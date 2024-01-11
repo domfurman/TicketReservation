@@ -1,6 +1,8 @@
 package pl.ticketreservation;
 
 import org.junit.jupiter.api.Test;
+import pl.ticketreservation.movie.Movie;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.Duration;

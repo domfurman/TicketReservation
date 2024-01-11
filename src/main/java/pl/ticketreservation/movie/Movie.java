@@ -1,17 +1,27 @@
-package pl.ticketreservation;
+package pl.ticketreservation.movie;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Movie {
-    String name;
-    Duration length;
-    LocalDateTime dateAndTime;
 
-    public Movie(String name, Duration length, LocalDateTime dateAndTime) {
+    public Integer id;
+    public String name;
+    public LocalDateTime dateAndTime;
+    public Duration length;
+
+    public Movie(Integer id, String name, LocalDateTime dateAndTime, Duration length) {
+        this.id = id;
         this.name = name;
-        this.length = length;
         this.dateAndTime = dateAndTime;
+        this.length = length;
+    }
+
+    public Movie() {
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {

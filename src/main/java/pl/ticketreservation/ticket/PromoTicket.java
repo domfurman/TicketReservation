@@ -1,7 +1,7 @@
 package pl.ticketreservation.ticket;
 
-import pl.ticketreservation.Client;
-import pl.ticketreservation.Movie;
+import pl.ticketreservation.client.Client;
+import pl.ticketreservation.movie.Movie;
 
 public class PromoTicket extends Ticket{
     private float ticketPrice = getPrice()*0.75f;

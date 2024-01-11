@@ -1,5 +1,6 @@
-package pl.ticketreservation;
+package pl.ticketreservation.client;
 
+import pl.ticketreservation.movie.Movie;
 import pl.ticketreservation.ticket.Ticket;
 
 public class Client {
