@@ -1,3 +1,4 @@
+/*
 package pl.ticketreservation.movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,3 +24,4 @@ public class MovieService {
 
 
 }
+*/
