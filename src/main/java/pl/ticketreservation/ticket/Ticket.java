@@ -1,70 +1,27 @@
 package pl.ticketreservation.ticket;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import pl.ticketreservation.client.Client;
 import pl.ticketreservation.movie.Movie;
+import pl.ticketreservation.seat.Seat;
 
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Ticket {
     private int ticketId;
     private float price;
     private Client owner;
-    private String row;
-    private String seat;
+    private Seat seat;
     private Movie movieName;
+    private typeOfTicket typeOfTicket;
 
-    public Ticket(int ticketId, float price, Client owner, String row, String seat, Movie movieName) {
-        this.ticketId = ticketId;
-        this.price = price;
-        this.owner = owner;
-        this.row = row;
-        this.seat = seat;
-        this.movieName = movieName;
-    }
-
-    public int getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(int ticketId) {
-        this.ticketId = ticketId;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public Client getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Client owner) {
-        this.owner = owner;
-    }
-
-    public String getRow() {
-        return row;
-    }
-
-    public void setRow(String row) {
-        this.row = row;
-    }
-
-    public String getSeat() {
-        return seat;
-    }
-
-    public void setSeat(String seat) {
-        this.seat = seat;
-    }
-
-    public Movie getMovieName() {
-        return movieName;
-    }
-
-    public void setMovieName(Movie movieName) {
-        this.movieName = movieName;
+    enum typeOfTicket{
+        NORMAL,
+        PROMO,
+        VIP
     }
 }
