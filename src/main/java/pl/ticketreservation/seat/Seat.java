@@ -14,7 +14,6 @@ public class Seat {
     private int row;
     private int seatNo;
     private int screeningRoomId;
-    private boolean isTaken = false;
 
 
 }

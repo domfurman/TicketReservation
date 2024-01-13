@@ -15,7 +15,7 @@ public class JdbcSeatRepository implements SeatRepository{
     JdbcTemplate jdbcTemplate;
     @Override
     public List<Seat> findAllSeatsForMovie(int movieId) {
-        return jdbcTemplate.query("SELECT s.* FROM sql11676201.seat s JOIN sql11676201.movie_ticket mt on s.ticketId = mt.ticketId WHERE mt.movieId = ? AND s.isTaken = 0",
+        return jdbcTemplate.query("SELECT * FROM sql11676201.movie_ticket WHERE movieId = ?",
                 BeanPropertyRowMapper.newInstance(Seat.class), movieId);
     }
 }

@@ -11,8 +11,8 @@ function displayMovies(movies) {
 
     // Iteracja przez filmy i dodanie do strony
     movies.forEach(function(movie) {
-        var movieDiv = $("<div class='movie' data-movie-name='" + movie.movie_name + "'>");
-        movieDiv.append("<h3>" + movie.movie_name + "</h3>");
+        var movieDiv = $("<div class='movie' data-movie-name='" + movie.movieName + "'>");
+        movieDiv.append("<h3>" + movie.movieName + "</h3>");
         movieDiv.append("<p>Date: " + formatDate(movie.date) + "</p>");
         moviesListDiv.append(movieDiv);
 

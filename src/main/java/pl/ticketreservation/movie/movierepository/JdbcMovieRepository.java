@@ -24,7 +24,7 @@ public class JdbcMovieRepository implements MovieRepository{
     @Override
     public Movie getByName(String name) throws MovieNotFoundException {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM sql11676201.movie WHERE movie_name = ?",
+            return jdbcTemplate.queryForObject("SELECT * FROM sql11676201.movie WHERE movieName = ?",
                     BeanPropertyRowMapper.newInstance(Movie.class), name);
         } catch (EmptyResultDataAccessException e) {
             throw new MovieNotFoundException("Movie with name " + name + " not found");

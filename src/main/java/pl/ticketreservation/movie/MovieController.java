@@ -17,8 +17,6 @@ public class MovieController {
     @Autowired
     JdbcMovieRepository movieRepository;
 
-
-
     @GetMapping(path = "/api/movies")
     public List<Movie> getMovies() {
         return movieRepository.findAll();

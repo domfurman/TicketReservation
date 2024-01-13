@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SeatRepository {
 
-    List<Seat> findAllSeatsForMovie(int movieName);
+    List<Seat> findAllSeatsForMovie(int movieId);
 
 
 }
