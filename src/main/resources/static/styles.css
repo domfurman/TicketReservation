@@ -5,7 +5,7 @@ body {
     padding: 0;
 }
 
-#movies-list {
+#screening-container {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
@@ -13,18 +13,17 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.movie {
+.screening-card {
     margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #ddd;
     background-color: #f9f9f9;
-    /*cursor: pointer;*/
 }
 
-.movie h3 {
+.screening-card h3 {
     margin: 0;
 }
 
-.movie p {
+.screening-card p {
     margin: 5px 0;
 }

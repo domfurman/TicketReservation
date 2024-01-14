@@ -4,16 +4,15 @@ package pl.ticketreservation.seat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.ticketreservation.auditorium.Auditorium;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Seat {
 
-    private int seatId;
-    private int row;
-    private int seatNo;
-    private int screeningRoomId;
-
-
+    public int seatId;
+    public int row;
+    public int seatNo;
+    public Auditorium auditorium;
 }

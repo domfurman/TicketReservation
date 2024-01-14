@@ -1,30 +1,25 @@
 $(document).ready(function() {
-    // Pobranie danych z endpointu /api/movies
-    $.get("/api/movies", function(data) {
-        // Wyświetlenie filmów na stronie
-        displayMovies(data);
+    // Pobranie danych z endpointu /api/screenings
+    $.get("http://localhost:8080/api/screenings", function(data) {
+        // Wyświetlenie seansów na stronie
+        renderScreenings(data);
     });
 });
 
-function displayMovies(movies) {
-    var moviesListDiv = $("#movies-list");
-
-    // Iteracja przez filmy i dodanie do strony
-    movies.forEach(function(movie) {
-        var movieDiv = $("<div class='movie' data-movie-name='" + movie.movieName + "'>");
-        movieDiv.append("<h3>" + movie.movieName + "</h3>");
-        movieDiv.append("<p>Date: " + formatDate(movie.date) + "</p>");
-        moviesListDiv.append(movieDiv);
-
-        // Dodanie obsługi kliknięcia
-        movieDiv.click(function() {
-            var movieName = $(this).data("movie-name");
-            window.location.href = "/" + encodeURIComponent(movieName) + "/ticket";
-        });
-    });
+function createScreeningCard(screening) {
+    var card = $("<div class='screening-card'>");
+    card.append("<h3>" + screening.movieName + "</h3>");
+    card.append("<p>Date: " + new Date(screening.date).toLocaleString() + "</p>");
+    card.append("<p>Auditorium: " + screening.auditoriumName + "</p>");
+    return card;
 }
 
-function formatDate(dateString) {
-    var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
-    return new Date(dateString).toLocaleDateString('en-US', options);
+function renderScreenings(screenings) {
+    var screeningContainer = $("#screening-container");
+
+    // Iteracja przez seanse i dodanie do strony
+    screenings.forEach(function(screening) {
+        var card = createScreeningCard(screening);
+        screeningContainer.append(card);
+    });
 }

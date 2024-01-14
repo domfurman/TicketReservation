@@ -1,15 +1,15 @@
 package pl.ticketreservation;
 import org.junit.jupiter.api.Test;
-import pl.ticketreservation.client.Client;
+import pl.ticketreservation.user.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ClientTest {
+public class UserTest {
 
     @Test
     void thereIsClient() {
-        Client client = new Client();
+        User user = new User();
 
-        assertNotNull(client);
+        assertNotNull(user);
     }
 }

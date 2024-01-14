@@ -13,6 +13,5 @@ public class Movie {
 
     public Integer movieId;
     public String movieName;
-    public LocalDateTime date;
     public int duration;
 }
