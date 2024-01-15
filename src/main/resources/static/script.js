@@ -4,6 +4,15 @@ $(document).ready(function() {
         // Wyświetlenie seansów na stronie
         renderScreenings(data);
     });
+
+    // Dodanie obsługi kliknięcia
+    $("#screening-container").on("click", ".screening-card", function() {
+        // Pobranie filmu z karty seansu
+        var movieName = $(this).find("h3").text();
+
+        // Przeniesienie na odpowiednią stronę
+        window.location.href = "/" + encodeURIComponent(movieName);
+    });
 });
 
 function createScreeningCard(screening) {
