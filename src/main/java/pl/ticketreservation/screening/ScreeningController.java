@@ -9,13 +9,16 @@ import java.util.List;
 
 @RestController
 public class ScreeningController {
+    private ScreeningService screeningService;
 
     @Autowired
-    JdbcScreeningRepository screeningRepository;
+    public ScreeningController(ScreeningService screeningService) {
+        this.screeningService = screeningService;
+    }
 
     @GetMapping(path = "/api/screenings")
     public List<Screening> getMovies() {
-        return screeningRepository.findAll();
+        return screeningService.getAllScreenings();
     }
 }
 
