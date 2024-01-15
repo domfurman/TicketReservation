@@ -13,23 +13,30 @@ import java.util.List;
 @RestController
 public class MovieController {
 
+    private MovieService movieService;
+
     @Autowired
-    JdbcMovieRepository movieRepository;
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
 
     @GetMapping(path = "/api/movies")
     public List<Movie> getMovies() {
-        return movieRepository.findAll();
+        return movieService.getAllMovies();
     }
 
     @GetMapping("/api/{name}")
     public Movie getByName(@PathVariable("name") String name, Model model) {
-        try {
-            Movie movie = movieRepository.getByName(name);
+        /*try {
+            Movie movie = movieService.getMovieByName(name);
             model.addAttribute("movie", movie);
             return movie;
         } catch (MovieNotFoundException e) {
             return null;
-        }
+        }*/
+        Movie movie = movieService.getMovieByName(name);
+        model.addAttribute("movie", movie);
+        return movie;
     }
 }
 
