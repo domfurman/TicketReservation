@@ -30,7 +30,9 @@ public class ScreeningController {
         model.addAttribute("screening",
                 screeningService.getScreeningById(screeningId));
         model.addAttribute("seats",
-                jdbcSeatRepository.getSeatsByScreeningId(screeningId));
+                jdbcSeatRepository.findSeatsByScreeningId(screeningId));
+        model.addAttribute("availableSeats",
+                jdbcSeatRepository.findAvailableSeatsByScreeningId(screeningId));
         return "single-screening";
     }
 }

@@ -1,16 +1,66 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Screening</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<p>Dostepne miejsca:</p>-->
+<!--<div th:each="seat: ${availableSeats}">-->
+<!--    <p th:id="${seat.getSeatId()}" th:text="'seat id:' + ${seat.getSeatId()}"/>-->
+<!--</div>-->
+<!--<p>Miejsca niedostępne:</p>-->
+<!--<div th:if="${!availableSeats.contains(seat)}" th:each="seat: ${seats}">-->
+<!--    <p th:id="${seat.getSeatId()}" th:text="'seat id:' + ${seat.seatId}" style="color: red"/>-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Screening</title>
+    <style>
+        /* Dodaj styl CSS, aby uzyskać macierz kwadratów */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            border: 1px solid black;
+            text-align: center;
+            width: 50px; /* Dostosuj szerokość komórek */
+            height: 50px; /* Dostosuj wysokość komórek */
+        }
+
+        .occupied {
+            background-color: red; /* Dostosuj kolor tła dla miejsc niedostępnych */
+        }
+    </style>
 </head>
 <body>
-<p th:text="'nazwa filmu: ' + ${screening.movieName}"/>
 <p>Miejsca:</p>
-<div th:each="seat: ${seats}">
-    <p th:text="'seat id:' + ${seat.getSeatId()}"/>
-    <p th:text="'seat row:' + ${seat.getRow()}"/>
-    <p th:text="'seat number:' + ${seat.getSeatNo()}"/>
-</div>
+<ol class="auditorium">
+    <li th:each="seat: ${seats}" th:class="row row--${seat.row}"></li>
+</ol>
+<!--<table>
+    <tr th:if="${seat.row == 1}" th:each="seat: ${seats}">
+        <td th:id="${seat.getSeatId()}" th:text="'seat id:' + ${seat.getSeatId()}" th:class="${!availableSeats.contains(seat)} ? 'occupied' : ''"/>
+    </tr>
+    <tr th:if="${seat.row == 2}" th:each="seat: ${seats}">
+        <td th:id="${seat.getSeatId()}" th:text="'seat id:' + ${seat.getSeatId()}" th:class="${!availableSeats.contains(seat)} ? 'occupied' : ''"/>
+    </tr>
+    <tr th:if="${seat.row == 3}" th:each="seat: ${seats}">
+        <td th:id="${seat.getSeatId()}" th:text="'seat id:' + ${seat.getSeatId()}" th:class="${!availableSeats.contains(seat)} ? 'occupied' : ''"/>
+    </tr>
+</table>-->
 </body>
 </html>
+
+
+
+
+
+

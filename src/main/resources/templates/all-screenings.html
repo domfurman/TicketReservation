@@ -5,17 +5,53 @@
     <title>Screenings</title>
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>Movie Name</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="screening: ${screeningList}">
-        <td th:text="${screening.movieName}"></td>
-    </tr>
-    </tbody>
-</table>
+<!--<table>-->
+<!--    <tbody>-->
+<!--    <tr th:each="screening: ${screeningList}" >-->
+<!--        <td th:text="${screening.movieName}"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<div id="screening-container">
+    <div th:each="screening:${screeningList}" class="screening-card">
+        <h3 th:text="${screening.movieName}"></h3>
+        <p>Date: <span th:text="${screening.date.toLocalDate()}"></span></p>
+        <p>Time: <span th:text="${screening.date.toLocalTime()}"></span></p>
+        <p>Auditorium: <span th:text="${screening.auditoriumName}"></span></p>
+    </div>
+</div>
+
+<!--</table>-->
 </body>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    #screening-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .screening-card {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+    }
+
+    .screening-card h3 {
+        margin: 0;
+    }
+
+    .screening-card p {
+        margin: 5px 0;
+    }
+</style>
 </html>

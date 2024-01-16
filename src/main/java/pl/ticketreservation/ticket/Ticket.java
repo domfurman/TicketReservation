@@ -3,11 +3,6 @@ package pl.ticketreservation.ticket;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.ticketreservation.user.User;
-import pl.ticketreservation.screening.Screening;
-import pl.ticketreservation.seat.Seat;
-
-import java.math.BigDecimal;
 
 
 @Data
@@ -20,10 +15,11 @@ public class Ticket {
     public int seatId;
     public int typeId;
 
-    public enum typeOfTicket{
+    public enum typeOfTicket {
         NORMAL,
-        VIP,
-        PROMO
+        PROMO,
+        VIP
+
 
     }
 }
