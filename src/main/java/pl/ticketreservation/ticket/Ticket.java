@@ -15,29 +15,15 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class Ticket {
     public int ticketId;
-    public User user;
-    public Screening screening;
-    public Seat seat;
-    public typeOfTicket typeOfTicket;
-    public BigDecimal price;
+    public int userId;
+    public int screeningId;
+    public int seatId;
+    public int typeId;
 
     public enum typeOfTicket{
         NORMAL,
         VIP,
         PROMO
 
-    }
-
-    public BigDecimal getPrice(){
-        BigDecimal price = null;
-        switch (typeOfTicket){
-            case NORMAL:
-                price = BigDecimal.valueOf(18.00);
-            case VIP:
-                price = BigDecimal.valueOf(24.00);
-            case PROMO:
-                price = BigDecimal.valueOf(14.00);
-        }
-        return price;
     }
 }

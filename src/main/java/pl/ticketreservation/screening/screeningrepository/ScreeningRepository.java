@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ScreeningRepository {
     List<Screening> findAll();
+
+    Screening findScreening(int screeningId);
 }

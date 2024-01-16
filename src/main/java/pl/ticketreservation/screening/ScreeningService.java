@@ -19,4 +19,8 @@ public class ScreeningService {
     public List<Screening> getAllScreenings() {
         return jdbcScreeningRepository.findAll();
     }
+
+    public Screening getScreeningById(int screeningId) {
+        return jdbcScreeningRepository.findScreening(screeningId);
+    }
 }

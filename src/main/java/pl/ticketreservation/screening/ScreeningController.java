@@ -9,16 +9,20 @@ import pl.ticketreservation.seat.seatrepository.JdbcSeatRepository;
 
 @Controller
 public class ScreeningController {
-    private ScreeningService screeningService;
+    private final ScreeningService screeningService;
+    private final JdbcSeatRepository jdbcSeatRepository;
 
     @Autowired
-    public ScreeningController(ScreeningService screeningService) {
+    public ScreeningController(ScreeningService screeningService, JdbcSeatRepository jdbcSeatRepository) {
         this.screeningService = screeningService;
+        this.jdbcSeatRepository = jdbcSeatRepository;
     }
 
-    @GetMapping(path = "/api/screenings")
-    public List<Screening> getMovies() {
-        return screeningService.getAllScreenings();
+    @GetMapping(path = "/screenings")
+    String getScreenings(Model model) {
+        model.addAttribute("screeningList",
+                screeningService.getAllScreenings());
+        return "all-screenings";
     }
 
     @GetMapping(path = "/screening/{screeningId}")
@@ -26,7 +30,6 @@ public class ScreeningController {
         model.addAttribute("screening",
                 screeningService.getScreeningById(screeningId));
         model.addAttribute("seats",
-//                #TODO implement this method
                 jdbcSeatRepository.getSeatsByScreeningId(screeningId));
         return "single-screening";
     }

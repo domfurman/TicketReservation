@@ -5,6 +5,12 @@
     <title>Screening</title>
 </head>
 <body>
-<p th:text="${screening.movieName}"/>
+<p th:text="'nazwa filmu: ' + ${screening.movieName}"/>
+<p>Miejsca:</p>
+<div th:each="seat: ${seats}">
+    <p th:text="'seat id:' + ${seat.getSeatId()}"/>
+    <p th:text="'seat row:' + ${seat.getRow()}"/>
+    <p th:text="'seat number:' + ${seat.getSeatNo()}"/>
+</div>
 </body>
 </html>
