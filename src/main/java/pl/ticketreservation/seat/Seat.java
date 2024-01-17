@@ -12,7 +12,7 @@ import pl.ticketreservation.auditorium.Auditorium;
 public class Seat {
 
     public int seatId;
-    public int row;
-    public int seatNo;
+    public String row;
+    public String seatNo;
     public Auditorium auditorium;
 }
