@@ -22,4 +22,8 @@ public class ScreeningService {
     public Screening getScreeningById(int screeningId) {
         return jdbcScreeningRepository.findScreening(screeningId);
     }
+
+    String findMovieNameByScreeningId(int screeningId) {
+        return jdbcScreeningRepository.findMovieNameByScreeningId(screeningId);
+    }
 }

@@ -7,4 +7,6 @@ public interface ScreeningRepository {
     List<Screening> findAll();
 
     Screening findScreening(int screeningId);
+
+    String findMovieNameByScreeningId(int screeningId);
 }

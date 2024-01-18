@@ -5,14 +5,15 @@
     <title>Screening</title>
 </head>
 <body>
-<p>Miejsca:</p>
-
+<h1>Wybierz miejsca na seans</h1>
+<h2 th:text="${movieName}" />
 <div class="auditorium">
     <ol>
         <li class="row row--1">
             <ol class="seats">
                 <li th:if="${seat.row} == 1" th:each="seat: ${seats}" class="seat" type="A" >
-                    <input type="checkbox" th:id="|${seat.row}${seat.seatNo}|" th:disabled="${!availableSeats.contains(seat)}" onclick="selectedSeat(this)"/>
+                    <input type="checkbox" th:id="|${seat.row}${seat.seatNo}|" th:disabled="${!availableSeats.contains(seat)}"
+                           th:class="${seat.seatId}" onclick="selectedSeat(this)"/>
                     <label th:for="|${seat.row}${seat.seatNo}|" th:text="|${seat.row}${seat.seatNo}|"></label>
                 </li>
             </ol>
@@ -20,7 +21,8 @@
         <li class="row row--2">
             <ol class="seats">
                 <li th:if="${seat.row} == 2" th:each="seat: ${seats}" class="seat">
-                    <input type="checkbox" th:id="|${seat.row}${seat.seatNo}|"/>
+                    <input type="checkbox" th:id="|${seat.row}${seat.seatNo}|" th:disabled="${!availableSeats.contains(seat)}"
+                           th:class="${seat.seatId}" onclick="selectedSeat(this)"/>
                     <label th:for="|${seat.row}${seat.seatNo}|" th:text="|${seat.row}${seat.seatNo}|"></label>
                 </li>
             </ol>
@@ -28,18 +30,28 @@
         <li class="row row--3">
             <ol class="seats">
                 <li th:if="${seat.row} == 3" th:each="seat: ${seats}" class="seat">
-                    <input type="checkbox" th:id="|${seat.row}${seat.seatNo}|"/>
+                    <input type="checkbox" th:id="|${seat.row}${seat.seatNo}|" th:disabled="${!availableSeats.contains(seat)}"
+                           th:class="${seat.seatId}" onclick="selectedSeat(this)"/>
                     <label th:for="|${seat.row}${seat.seatNo}|" th:text="|${seat.row}${seat.seatNo}|"></label>
                 </li>
             </ol>
         </li>
     </ol>
 </div>
+<div>
+    <button>POST DO TICKETA</button>
+</div>
 
 <script>
     function selectedSeat(seat) {
         let seatId = seat.getAttribute("id")
+        let seatId2 = seat.getAttribute("class")
         console.log(seatId)
+        console.log(seatId2)
+    }
+
+    function makeReservation() {
+
     }
 </script>
 

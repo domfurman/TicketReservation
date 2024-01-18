@@ -12,6 +12,7 @@ public class ScreeningController {
     private final ScreeningService screeningService;
     private final JdbcSeatRepository jdbcSeatRepository;
 
+
     @Autowired
     public ScreeningController(ScreeningService screeningService, JdbcSeatRepository jdbcSeatRepository) {
         this.screeningService = screeningService;
@@ -25,7 +26,7 @@ public class ScreeningController {
         return "all-screenings";
     }
 
-    @GetMapping(path = "/screening/{screeningId}")
+    @GetMapping(path = "/screenings/{screeningId}")
     public String getScreening(@PathVariable("screeningId") int screeningId, Model model) {
         model.addAttribute("screening",
                 screeningService.getScreeningById(screeningId));
@@ -33,6 +34,8 @@ public class ScreeningController {
                 jdbcSeatRepository.findSeatsByScreeningId(screeningId));
         model.addAttribute("availableSeats",
                 jdbcSeatRepository.findAvailableSeatsByScreeningId(screeningId));
+        model.addAttribute("movieName",
+                screeningService.findMovieNameByScreeningId(screeningId));
         return "single-screening";
     }
 }

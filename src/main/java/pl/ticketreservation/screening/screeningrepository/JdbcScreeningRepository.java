@@ -28,4 +28,14 @@ public class JdbcScreeningRepository implements ScreeningRepository {
                         "JOIN  auditorium a ON s.auditoriumId = a.auditoriumId WHERE screeningId = ?",
                 BeanPropertyRowMapper.newInstance(Screening.class), screeningId);
     }
+    @Override
+    public String findMovieNameByScreeningId(int screeningId){
+        return jdbcTemplate.queryForObject("""
+                SELECT movie.movieName
+                FROM screening
+                JOIN movie ON screening.movieId = movie.movieId
+                WHERE screening.screeningId = ?
+                """,
+                String.class, screeningId);
+    }
 }
