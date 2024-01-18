@@ -15,7 +15,7 @@ public class JdbcSeatRepository implements SeatRepository{
     JdbcTemplate jdbcTemplate;
     @Override
     public List<Seat> findAllSeatsForMovie(int movieId) {
-        return jdbcTemplate.query("SELECT * FROM sql11676201.movie_ticket WHERE movieId = ?",
+        return jdbcTemplate.query("SELECT * FROM movie_ticket WHERE movieId = ?",
                 BeanPropertyRowMapper.newInstance(Seat.class), movieId);
     }
 
@@ -23,9 +23,9 @@ public class JdbcSeatRepository implements SeatRepository{
     public List<Seat> findSeatsByScreeningId(int screeningId) {
         return jdbcTemplate.query("""
                         SELECT s.*
-                        FROM sql11676201.seat s
-                        JOIN sql11676201.auditorium a ON s.auditoriumId = a.auditoriumId
-                        JOIN sql11676201.screening sc ON a.auditoriumId = sc.auditoriumId
+                        FROM seat s
+                        JOIN auditorium a ON s.auditoriumId = a.auditoriumId
+                        JOIN screening sc ON a.auditoriumId = sc.auditoriumId
                         WHERE sc.screeningId = ?;
                         """,
                 BeanPropertyRowMapper.newInstance(Seat.class), screeningId);
@@ -35,10 +35,10 @@ public class JdbcSeatRepository implements SeatRepository{
     public List<Seat> findAvailableSeatsByScreeningId(int screeningId){
         return jdbcTemplate.query("""
                 SELECT s.*
-                    FROM sql11676201.seat s
-                    JOIN sql11676201.auditorium a ON s.auditoriumId = a.auditoriumId
-                    JOIN sql11676201.screening sc ON a.auditoriumId = sc.auditoriumId
-                    LEFT JOIN sql11676201.ticket t ON s.seatId = t.seatId AND t.screeningId = sc.screeningId
+                    FROM seat s
+                    JOIN auditorium a ON s.auditoriumId = a.auditoriumId
+                    JOIN screening sc ON a.auditoriumId = sc.auditoriumId
+                    LEFT JOIN ticket t ON s.seatId = t.seatId AND t.screeningId = sc.screeningId
                     WHERE sc.screeningId = ? AND t.ticketId IS NULL;
                 """,
             BeanPropertyRowMapper.newInstance(Seat.class), screeningId);

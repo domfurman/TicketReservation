@@ -17,14 +17,14 @@ public class JdbcMovieRepository implements MovieRepository{
 
     @Override
     public List<Movie> findAll() {
-        return jdbcTemplate.query("SELECT * FROM sql11676201.movie",
+        return jdbcTemplate.query("SELECT * FROM movie",
                 BeanPropertyRowMapper.newInstance(Movie.class));
     }
 
     @Override
     public Movie getByName(String name) throws MovieNotFoundException {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM sql11676201.movie WHERE movieName = ?",
+            return jdbcTemplate.queryForObject("SELECT * FROM movie WHERE movieName = ?",
                     BeanPropertyRowMapper.newInstance(Movie.class), name);
         } catch (EmptyResultDataAccessException e) {
             throw new MovieNotFoundException("Movie with name " + name + " not found");
