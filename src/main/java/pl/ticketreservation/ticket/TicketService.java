@@ -15,5 +15,8 @@ public class TicketService {
         this.jdbcTicketRepository = jdbcTicketRepository;
     }
 
+    public int makeTicketReservation(Ticket ticket){
+        return jdbcTicketRepository.makeTicketReservation(ticket);
+    }
 
 }
