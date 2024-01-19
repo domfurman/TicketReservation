@@ -3,10 +3,7 @@ package pl.ticketreservation.ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.ticketreservation.ticket.ticketrepository.JdbcTicketRepository;
 
 import java.util.List;
@@ -26,7 +23,7 @@ public class TicketController {
         return ticketService.getAallTickets();
     }
 
-    @PostMapping
+    @PostMapping(value = "/make-ticket-reservation")
     public void makeTicketReservation(@RequestBody Ticket ticket){
       /*int response = ticketService.makeTicketReservation(ticket);
       if (response == 1) {

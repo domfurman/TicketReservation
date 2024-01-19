@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Screening</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <h1>Wybierz miejsca na seans</h1>
@@ -38,20 +39,50 @@
         </li>
     </ol>
 </div>
-<div>
-    <button>POST DO TICKETA</button>
-</div>
+<form id="ticketForm">
+    <label for="userId">UserId (wpisz 1)</label>
+    <input type="text" id="userId" name="userId" required>
+
+    <button type="button" id="reserveTicketButton">Reserve Ticket</button>
+</form>
+
 
 <script>
+    $(document).ready(function() {
+        $("#reserveTicketButton").click(function() {
+            // Get the values from the form
+            var userId = $("#userId").val();
+            // Get other ticket-related values as needed
+
+            // Create a Ticket object
+            var ticket = {
+                userId: userId,
+                screeningId: 1,
+                seatId : 1,
+                typeId : 1
+                // Add other properties as needed
+            };
+
+            // Make an AJAX request to the server
+            $.ajax({
+                type: "POST",
+                url: "/make-ticket-reservation",
+                contentType: "application/json",
+                data: JSON.stringify(ticket),
+                success: function() {
+                    alert("Ticket reservation successful!");
+                },
+                error: function() {
+                    alert("Error occurred during ticket reservation.");
+                }
+            });
+        });
+    });
     function selectedSeat(seat) {
         let seatId = seat.getAttribute("id")
         let seatId2 = seat.getAttribute("class")
         console.log(seatId)
         console.log(seatId2)
-    }
-
-    function makeReservation() {
-
     }
 </script>
 
