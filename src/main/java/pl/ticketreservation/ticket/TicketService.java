@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.ticketreservation.seat.seatrepository.JdbcSeatRepository;
 import pl.ticketreservation.ticket.ticketrepository.JdbcTicketRepository;
 
+import java.util.List;
+
 @Service
 public class TicketService {
 
@@ -15,8 +17,12 @@ public class TicketService {
         this.jdbcTicketRepository = jdbcTicketRepository;
     }
 
-    public int makeTicketReservation(Ticket ticket){
-        return jdbcTicketRepository.makeTicketReservation(ticket);
+    public void makeTicketReservation(Ticket ticket){
+        jdbcTicketRepository.makeTicketReservation(ticket);
+    }
+
+    public List<Ticket> getAallTickets() {
+        return jdbcTicketRepository.findAll();
     }
 
 }

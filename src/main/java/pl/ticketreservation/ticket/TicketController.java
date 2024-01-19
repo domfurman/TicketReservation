@@ -3,10 +3,13 @@ package pl.ticketreservation.ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.ticketreservation.ticket.ticketrepository.JdbcTicketRepository;
+
+import java.util.List;
 
 @RestController
 public class TicketController {
@@ -18,13 +21,19 @@ public class TicketController {
         this.ticketService = ticketService;
     }
 
-    @PostMapping("")
-    public ResponseEntity<Ticket> makeTicketReservation(@RequestBody Ticket ticket){
-      int response = ticketService.makeTicketReservation(ticket);
+    @GetMapping(path = "api/tickets")
+    public List<Ticket> getAllTickets() {
+        return ticketService.getAallTickets();
+    }
+
+    @PostMapping
+    public void makeTicketReservation(@RequestBody Ticket ticket){
+      /*int response = ticketService.makeTicketReservation(ticket);
       if (response == 1) {
           return new ResponseEntity<>(ticket, HttpStatus.CREATED);
       }else {
           return new ResponseEntity<>(ticket, HttpStatus.INTERNAL_SERVER_ERROR);
-      }
+      }*/
+        ticketService.makeTicketReservation(ticket);
     }
 }
