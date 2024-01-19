@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Screening</title>
@@ -12,9 +12,9 @@
     <ol>
         <li class="row row--1">
             <ol class="seats">
-                <li th:if="${seat.row} == 1" th:each="seat: ${seats}" class="seat" type="A" >
+                <li th:if="${seat.row} == 1" th:each="seat: ${seats}" class="seat">
                     <input type="checkbox" th:id="|${seat.row}${seat.seatNo}|" th:disabled="${!availableSeats.contains(seat)}"
-                           th:class="${seat.seatId}" onclick="selectedSeat(this)"/>
+                           th:class="${seat.seatId}" />
                     <label th:for="|${seat.row}${seat.seatNo}|" th:text="|${seat.row}${seat.seatNo}|"></label>
                 </li>
             </ol>
@@ -23,7 +23,7 @@
             <ol class="seats">
                 <li th:if="${seat.row} == 2" th:each="seat: ${seats}" class="seat">
                     <input type="checkbox" th:id="|${seat.row}${seat.seatNo}|" th:disabled="${!availableSeats.contains(seat)}"
-                           th:class="${seat.seatId}" onclick="selectedSeat(this)"/>
+                           th:class="${seat.seatId}" />
                     <label th:for="|${seat.row}${seat.seatNo}|" th:text="|${seat.row}${seat.seatNo}|"></label>
                 </li>
             </ol>
@@ -32,7 +32,7 @@
             <ol class="seats">
                 <li th:if="${seat.row} == 3" th:each="seat: ${seats}" class="seat">
                     <input type="checkbox" th:id="|${seat.row}${seat.seatNo}|" th:disabled="${!availableSeats.contains(seat)}"
-                           th:class="${seat.seatId}" onclick="selectedSeat(this)"/>
+                           th:class="${seat.seatId}" />
                     <label th:for="|${seat.row}${seat.seatNo}|" th:text="|${seat.row}${seat.seatNo}|"></label>
                 </li>
             </ol>
@@ -43,47 +43,41 @@
     <label for="userId">UserId (wpisz 1)</label>
     <input type="text" id="userId" name="userId" required>
 
-    <button type="button" id="reserveTicketButton">Reserve Ticket</button>
+    <button type="button" id="reserveTicketButton" onclick="reserveTicket()">Reserve Ticket</button>
 </form>
 
 
 <script>
-    $(document).ready(function() {
-        $("#reserveTicketButton").click(function() {
-            // Get the values from the form
-            var userId = $("#userId").val();
-            // Get other ticket-related values as needed
-
-            // Create a Ticket object
-            var ticket = {
+    function reserveTicket() {
+        const userId = document.getElementById("userId").value;
+        const checkbox = document.querySelector('input[type="checkbox"]:checked');
+        let screeningId = parseInt(window.location.pathname.split('/').pop());
+        // console.log(screeningId);
+        if (checkbox) {
+            const seatId = checkbox.getAttribute("class");
+            const ticket = {
                 userId: userId,
-                screeningId: 1,
-                seatId : 1,
-                typeId : 1
-                // Add other properties as needed
+                screeningId: screeningId,
+                seatId: seatId,
+                typeId: 1,
             };
 
-            // Make an AJAX request to the server
-            $.ajax({
-                type: "POST",
-                url: "/make-ticket-reservation",
-                contentType: "application/json",
-                data: JSON.stringify(ticket),
-                success: function() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/make-ticket-reservation", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
                     alert("Ticket reservation successful!");
-                },
-                error: function() {
+                } else {
                     alert("Error occurred during ticket reservation.");
                 }
-            });
-        });
-    });
-    function selectedSeat(seat) {
-        let seatId = seat.getAttribute("id")
-        let seatId2 = seat.getAttribute("class")
-        console.log(seatId)
-        console.log(seatId2)
-    }
+            };
+
+            const jsonTicket = JSON.stringify(ticket);
+
+            xhr.send(jsonTicket);
+        }}
 </script>
 
 </body>
