@@ -12,5 +12,7 @@ public interface SeatRepository {
 
     List<Seat> findAvailableSeatsByScreeningId(int screeningId);
 
+    Seat getSeatInfoByTicketId(int ticketId);
+
 
 }

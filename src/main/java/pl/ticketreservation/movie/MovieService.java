@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.ticketreservation.movie.Movie;
+import pl.ticketreservation.movie.movierepository.JdbcMovieRepository;
 import pl.ticketreservation.movie.movierepository.MovieNotFoundException;
 import pl.ticketreservation.movie.movierepository.MovieRepository;
 
@@ -34,4 +35,7 @@ public class MovieService {
     }
 
 
+    public Movie getMovieInfoByTicketId(int ticketId) {
+        return movieRepository.getMovieInfoByTicketId(ticketId);
+    }
 }

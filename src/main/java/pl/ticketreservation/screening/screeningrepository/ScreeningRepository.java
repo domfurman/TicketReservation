@@ -9,4 +9,6 @@ public interface ScreeningRepository {
     Screening findScreening(int screeningId);
 
     String findMovieNameByScreeningId(int screeningId);
+
+    Screening getScreeningInfoByTicketId(int ticketId);
 }

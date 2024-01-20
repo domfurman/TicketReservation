@@ -38,4 +38,14 @@ public class JdbcScreeningRepository implements ScreeningRepository {
                 """,
                 String.class, screeningId);
     }
+
+    @Override
+    public Screening getScreeningInfoByTicketId(int ticketId){
+        return jdbcTemplate.queryForObject("""
+                SELECT s.*
+                FROM screening s
+                JOIN ticket t ON s.screeningId = t.screeningId
+                WHERE t.ticketId = ?;
+                """, BeanPropertyRowMapper.newInstance(Screening.class), ticketId);
+    }
 }

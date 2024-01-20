@@ -43,4 +43,15 @@ public class JdbcSeatRepository implements SeatRepository{
                 """,
             BeanPropertyRowMapper.newInstance(Seat.class), screeningId);
     }
+
+    @Override
+    public Seat getSeatInfoByTicketId(int ticketId) {
+        return jdbcTemplate.queryForObject("""
+                SELECT s.row, s.seatNo, s.auditoriumId
+                FROM seat s
+                JOIN ticket t ON s.seatId = t.seatId
+                WHERE t.ticketId = ?;
+                """, BeanPropertyRowMapper.newInstance(Seat.class), ticketId);
+
+    }
 }

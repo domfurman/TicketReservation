@@ -18,4 +18,6 @@ public class UserController {
     public int makeUser(@RequestBody User user){
         return jdbcUserRepository.makeUser(user);
     }
+
+
 }

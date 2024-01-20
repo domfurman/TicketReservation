@@ -17,12 +17,16 @@ public class TicketService {
         this.jdbcTicketRepository = jdbcTicketRepository;
     }
 
-    public void makeTicketReservation(Ticket ticket){
-        jdbcTicketRepository.makeTicketReservation(ticket);
+    public int makeTicketReservation(Ticket ticket){
+        return jdbcTicketRepository.makeTicketReservation(ticket);
     }
 
-    public List<Ticket> getAallTickets() {
+    public List<Ticket> getAllTickets() {
         return jdbcTicketRepository.findAll();
+    }
+
+    public Ticket getTicketById(int ticketId) {
+        return jdbcTicketRepository.findTicketById(ticketId);
     }
 
 }

@@ -6,6 +6,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+<button onclick="redirectToAllScreenings()">cofnij</button>
 <h1>Wybierz miejsca na seans</h1>
 <h2 th:text="${movieName}" />
 <div class="auditorium">
@@ -47,6 +48,9 @@
 
 
 <script>
+    function redirectToAllScreenings() {
+        window.location.href = "/screenings"
+    }
     function reserveTicket() {
         const userName = document.getElementById("userName").value;
         const userSurname = document.getElementById("userSurname").value;
@@ -79,6 +83,7 @@
     }
 
     function reserveTicketWithUserId(userId) {
+        // let ticketId = 0;
         const checkbox = document.querySelector('input[type="checkbox"]:checked');
         let screeningId = parseInt(window.location.pathname.split('/').pop());
 
@@ -96,6 +101,8 @@
 
             xhr.onload = function () {
                 if (xhr.status === 200) {
+                    const ticketId = parseInt(xhr.responseText);
+                    console.log(ticketId);
                     alert("Ticket reservation successful!");
                 } else {
                     alert("Error occurred during ticket reservation.");
@@ -105,38 +112,14 @@
             const jsonTicket = JSON.stringify(ticket);
 
             xhr.send(jsonTicket);
+
         }
+
     }
 </script>
 
 </body>
 <style>
-    #screen {
-        width: 80%;
-        height: 60vh;
-        background-color: #fff;
-        position: relative;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-        overflow: hidden;
-    }
-
-    #movie-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        color: #fff;
-    }
-
-    #movie-title {
-        font-size: 2em;
-        margin-bottom: 20px;
-    }
-
-    #movie-description {
-        font-size: 1.2em;
-    }
     .auditorium {
 
     }

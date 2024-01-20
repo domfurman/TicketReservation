@@ -9,4 +9,6 @@ public interface TicketRepository {
     int makeTicketReservation(Ticket ticket);
 
     List<Ticket> findAll();
+
+    Ticket findTicketById(int ticketId);
 }

@@ -15,6 +15,16 @@ public class JdbcMovieRepository implements MovieRepository{
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+
+    @Override
+    public Movie getMovieInfoByTicketId(int ticketId) {
+        return jdbcTemplate.queryForObject("SELECT m.*" +
+                " FROM movie m " +
+                " JOIN screening s ON m.movieId = s.movieId" +
+                " JOIN ticket t ON s.screeningId = t.screeningId" +
+                " WHERE t.ticketId = ?", BeanPropertyRowMapper.newInstance(Movie.class), ticketId);
+    }
+
     @Override
     public List<Movie> findAll() {
         return jdbcTemplate.query("SELECT * FROM movie",
