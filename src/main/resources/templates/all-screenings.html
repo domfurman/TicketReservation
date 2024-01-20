@@ -5,12 +5,6 @@
     <title>Screenings</title>
 </head>
 <body>
-<!--<table>-->
-<!--    <tbody>-->
-<!--    <tr th:each="screening: ${screeningList}" >-->
-<!--        <td th:text="${screening.movieName}"></td>-->
-<!--    </tr>-->
-<!--    </tbody>-->
 <div id="screening-container">
     <div th:each="screening:${screeningList}" class="screening-card" th:id="'screening-card-' + ${screening.screeningId}">
         <h3 th:text="${screening.movieName}"></h3>
@@ -23,13 +17,11 @@
 
 <script>
     function redirectToScreening(event) {
-        console.log("Clicked!")
         let screeningId = event.target.id;
         window.location.href = 'screenings/' + screeningId;
     }
 </script>
 
-<!--</table>-->
 </body>
 
 <style>
