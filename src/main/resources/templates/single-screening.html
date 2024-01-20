@@ -47,13 +47,38 @@
 
 
 <script>
-
-    function getSeatIdByClick(seat) {
-        let s = seat.getAttribute("class");
-        console.log(s);
-    }
     function reserveTicket() {
-        const userId = document.getElementById("userId").value;
+        const userName = document.getElementById("userName").value;
+        const userSurname = document.getElementById("userSurname").value;
+
+        const user = {
+            name: userName,
+            surname: userSurname
+        };
+
+        makeUser(user, reserveTicketWithUserId);
+    }
+
+    function makeUser(user, callback) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/make-new-user", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                const userId = parseInt(xhr.responseText);
+                if (typeof callback === 'function') {
+                    callback(userId);
+                }
+            } else {
+                alert("Error");
+            }
+        };
+        const jsonUser = JSON.stringify(user);
+        xhr.send(jsonUser);
+    }
+
+    function reserveTicketWithUserId(userId) {
         const checkbox = document.querySelector('input[type="checkbox"]:checked');
         let screeningId = parseInt(window.location.pathname.split('/').pop());
 
@@ -65,26 +90,23 @@
                 seatId: seatId,
                 typeId: 1,
             };
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/make-ticket-reservation", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
 
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "/make-ticket-reservation", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert("Ticket reservation successful!");
+                } else {
+                    alert("Error occurred during ticket reservation.");
+                }
+            };
 
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                alert("Ticket reservation successful!");
-            } else {
-                alert("Error occurred during ticket reservation.");
-            }
-        };
+            const jsonTicket = JSON.stringify(ticket);
 
-        const jsonTicket = JSON.stringify(ticket);
-
-        xhr.send(jsonTicket);
+            xhr.send(jsonTicket);
+        }
     }
-    }
-
-
 </script>
 
 </body>
