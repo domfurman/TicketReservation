@@ -42,7 +42,7 @@
 <form id="ticketForm">
     <input type="text" id="userName" name="userName" required>
     <input type="text" id="userSurname" name="userSurname" required>
-    <button type="button" id="reserveTicketButton">Reserve Ticket</button>
+    <button type="button" id="reserveTicketButton" onclick="reserveTicket()">Reserve Ticket</button>
 </form>
 
 
@@ -51,33 +51,25 @@
     function getSeatIdByClick(seat) {
         let s = seat.getAttribute("class");
         console.log(s);
-        // return s;
     }
     function reserveTicket() {
-        // Get the values from the form
         const userId = document.getElementById("userId").value;
         const checkbox = document.querySelector('input[type="checkbox"]:checked');
+        let screeningId = parseInt(window.location.pathname.split('/').pop());
 
         if (checkbox) {
-            // Retrieve the value of the class attribute
             const seatId = checkbox.getAttribute("class");
-        // Get other ticket-related values as needed
+            const ticket = {
+                userId: userId,
+                screeningId: screeningId,
+                seatId: seatId,
+                typeId: 1,
+            };
 
-        // Create a Ticket object
-        const ticket = {
-            userId: userId,
-            screeningId: 1,
-            seatId: seatId,
-            typeId: 1,
-            // Add other properties as needed
-        };
-
-        // Create a new XMLHttpRequest
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "/make-ticket-reservation", true);
         xhr.setRequestHeader("Content-Type", "application/json");
 
-        // Set up the callback function for when the request completes
         xhr.onload = function () {
             if (xhr.status === 200) {
                 alert("Ticket reservation successful!");
@@ -86,10 +78,8 @@
             }
         };
 
-        // Convert the JavaScript object to a JSON string
         const jsonTicket = JSON.stringify(ticket);
 
-        // Send the request with the JSON data
         xhr.send(jsonTicket);
     }
     }
