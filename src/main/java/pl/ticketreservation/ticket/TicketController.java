@@ -38,9 +38,11 @@ public class TicketController {
         return ticketService.getAllTickets();
     }
 
+//    @ResponseBody
     @PostMapping(value = "/make-ticket-reservation")
-    public int makeTicketReservation(@RequestBody Ticket ticket){
-        return ticketService.makeTicketReservation(ticket);
+    public ResponseEntity<Integer> makeTicketReservation(@RequestBody Ticket ticket){
+        int ticketId =  ticketService.makeTicketReservation(ticket);
+        return ResponseEntity.ok(ticketId);
     }
 
     @GetMapping(path = "ticket/{id}")
