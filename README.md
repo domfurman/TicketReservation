@@ -38,7 +38,7 @@ mvn clean install
 mvn spring-boot:run
 ```
 The application will be accessible at [http://localhost:8080](http://localhost:8080).
-If you want to stop the application, press **CTRL + C**
+If you want to stop the application, press <kbd>CTRL</kbd> + <kbd>C</kbd>
 
 ## Usage
 1. Access the application in your web browser.
