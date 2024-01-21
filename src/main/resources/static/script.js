@@ -1,3 +1,4 @@
+/*
 $(document).ready(function() {
     // Pobranie danych z endpointu /api/screenings
     $.get("http://localhost:8080/api/screenings", function(data) {
@@ -31,4 +32,8 @@ function renderScreenings(screenings) {
         var card = createScreeningCard(screening);
         screeningContainer.append(card);
     });
+}
+*/
+function exploreScreenings() {
+    window.location.href = "/screenings"
 }
