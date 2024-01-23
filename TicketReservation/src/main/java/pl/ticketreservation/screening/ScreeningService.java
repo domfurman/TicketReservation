@@ -2,6 +2,7 @@ package pl.ticketreservation.screening;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.ticketreservation.movie.Movie;
 import pl.ticketreservation.screening.screeningrepository.JdbcScreeningRepository;
 
 import java.util.List;
@@ -29,5 +30,9 @@ public class ScreeningService {
 
     public Screening getScreeningInfoByTicketId(int ticketId) {
         return jdbcScreeningRepository.getScreeningInfoByTicketId(ticketId);
+    }
+
+    public Movie getMovieByScreeningId(int screeningId) {
+        return jdbcScreeningRepository.findMovieByScreeningId(screeningId);
     }
 }

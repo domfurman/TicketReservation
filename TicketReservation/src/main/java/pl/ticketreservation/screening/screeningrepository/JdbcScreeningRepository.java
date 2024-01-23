@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import pl.ticketreservation.movie.Movie;
 import pl.ticketreservation.screening.Screening;
 
 import java.util.List;
@@ -47,5 +48,16 @@ public class JdbcScreeningRepository implements ScreeningRepository {
                 JOIN ticket t ON s.screeningId = t.screeningId
                 WHERE t.ticketId = ?;
                 """, BeanPropertyRowMapper.newInstance(Screening.class), ticketId);
+    }
+
+    @Override
+    public Movie findMovieByScreeningId(int screeningId) {
+        return jdbcTemplate.queryForObject("""
+                                SELECT movie.movieId, movieName, duration
+                                FROM movie
+                                JOIN screening ON screening.movieId = movie.movieId
+                                WHERE screening.screeningId = ?
+                """,
+                BeanPropertyRowMapper.newInstance(Movie.class), screeningId);
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import pl.ticketreservation.movie.Movie;
+import pl.ticketreservation.seat.Seat;
 import pl.ticketreservation.seat.seatrepository.JdbcSeatRepository;
 
 import java.util.List;
@@ -32,19 +34,16 @@ public class ScreeningController {
         return new ResponseEntity<>(screenings, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/screenings/{screeningId}")
-    public ResponseEntity<Screening> getScreening(@PathVariable("screeningId") int screeningId, Model model) {
-        /*model.addAttribute("screening",
-                screeningService.getScreeningById(screeningId));
-        model.addAttribute("seats",
-                jdbcSeatRepository.findSeatsByScreeningId(screeningId));
-        model.addAttribute("availableSeats",
-                jdbcSeatRepository.findAvailableSeatsByScreeningId(screeningId));
-        model.addAttribute("movieName",
-                screeningService.findMovieNameByScreeningId(screeningId));
-        return "single-screening";*/
+    @GetMapping(path = "api/screenings/{screeningId}")
+    public ResponseEntity<ScreeningDTO> getScreening(@PathVariable("screeningId") int screeningId, Model model) {
         Screening screening = screeningService.getScreeningById(screeningId);
-        return new ResponseEntity<>(screening, HttpStatus.OK);
+        Movie movie = screeningService.getMovieByScreeningId(screeningId);
+        List<Seat> seats = jdbcSeatRepository.findSeatsByScreeningId(screeningId);
+        List<Seat> availableSeats = jdbcSeatRepository.findAvailableSeatsByScreeningId(screeningId);
+
+        ScreeningDTO screeningDTO = new ScreeningDTO(screening, movie, seats, availableSeats);
+
+        return new ResponseEntity<>(screeningDTO, HttpStatus.OK);
     }
 }
 
