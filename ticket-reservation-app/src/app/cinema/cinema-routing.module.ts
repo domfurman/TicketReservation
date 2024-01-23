@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import {AllScreeningsComponent} from "./components/all-screenings/all-screenings.component";
+import {SingleScreeningComponent} from "./components/single-screening/single-screening.component";
 
 
 const routes: Routes = [
-  { path: 'screenings', component: AllScreeningsComponent}
+  { path: 'screenings', component: AllScreeningsComponent},
+  { path: 'screenings/:screeningId', component: SingleScreeningComponent}
 
 ];
 

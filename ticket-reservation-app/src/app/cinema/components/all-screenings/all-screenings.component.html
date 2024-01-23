@@ -4,6 +4,6 @@
     <p>Date: <span>{{ screening.date | date: 'dd-MM-yyyy' }}</span></p>
     <p>Time: <span>{{ screening.date | date: 'HH:mm'}}</span></p>
     <p>Auditorium: <span>{{ screening.auditoriumName }}</span></p>
-    <button class="btn-buy-ticket">BUY TICKET</button>
+    <button class="btn-buy-ticket" id="{{screening.screeningId}}" (click)="redirectToSeatChoice(screening.screeningId)">BUY TICKET</button>
   </div>
 </div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SingleScreeningsComponent } from './single-screenings.component';
+import { SingleScreeningComponent } from './single-screening.component';
 
 describe('SingleScreeningsComponent', () => {
-  let component: SingleScreeningsComponent;
-  let fixture: ComponentFixture<SingleScreeningsComponent>;
+  let component: SingleScreeningComponent;
+  let fixture: ComponentFixture<SingleScreeningComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SingleScreeningsComponent]
+      imports: [SingleScreeningComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(SingleScreeningsComponent);
+
+    fixture = TestBed.createComponent(SingleScreeningComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

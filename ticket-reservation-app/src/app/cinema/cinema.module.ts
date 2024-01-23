@@ -4,12 +4,14 @@ import {CinemaService} from "./services/cinema.service";
 import {HttpClientModule} from "@angular/common/http";
 import {AllScreeningsComponent} from "./components/all-screenings/all-screenings.component";
 import {CinemaRoutingModule} from "./cinema-routing.module";
+import {SingleScreeningComponent} from "./components/single-screening/single-screening.component";
 
 
 
 @NgModule({
   declarations: [
-    AllScreeningsComponent
+    AllScreeningsComponent,
+    SingleScreeningComponent
   ],
   imports: [
     CommonModule,

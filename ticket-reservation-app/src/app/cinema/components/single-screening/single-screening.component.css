@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&display=swap");
+body {
+  font-family: "Quicksand", sans-serif;
+  background-color: #0a53be;
+}
+body h1 {
+  font-family: "Bebas Neue", sans-serif;
+}
+body h2 {
+  padding-top: 10px;
+  margin-bottom: -15px;
+}
+body .instr {
+  margin-bottom: -3px;
+}
+body .nav {
+  border-bottom: 3px solid black;
+  margin-bottom: 15px;
+}
+body .container {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  text-align: center;
+}
+body .container .auditorium {
+  margin-left: 30%;
+}
+body ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+body .row .seats {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+body .row .seat {
+  display: flex;
+  flex: 0 0 14.2857142857%;
+  padding: 5px;
+  position: relative;
+}
+body .row .seat:nth-child(3) {
+  margin-right: 14.2857142857%;
+}
+body .row .seat label {
+  display: block;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.5rem;
+  padding: 4px 0;
+  background: #BADA55;
+  border-radius: 5px;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+}
+body .row .seat label:before {
+  content: "";
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  top: 1px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
+}
+body .row .seat label:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0px 2px #5C6AFF;
+}
+body .row .seat input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+body .row .seat input[type=checkbox]:checked + label {
+  background: #ff9f2c;
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+}
+body .row .seat input[type=checkbox]:disabled + label {
+  background: #f42536;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+body .row .seat input[type=checkbox]:disabled + label:after {
+  content: "X";
+  text-indent: 0;
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+body .row .seat input[type=checkbox]:disabled + label:hover {
+  box-shadow: none;
+  cursor: not-allowed;
+}
+body button {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #000000;
+  font-family: inherit;
+  font-weight: normal;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  text-transform: uppercase;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+}
+body button:focus, body button:hover {
+  color: #464646;
+}
+body button:focus:after, body button:hover:after {
+  width: 100%;
+  left: 0%;
+}
+body button:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #464646;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
+body .inputGroup {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: "Segoe UI", sans-serif;
+  max-width: 190px;
+  margin-left: 17%;
+}
+body .inputGroup input {
+  font-size: 100%;
+  padding: 0.8em;
+  outline: none;
+  border: 2px solid rgb(200, 200, 200);
+  background-color: transparent;
+  border-radius: 20px;
+  width: 100%;
+}
+
+/*# sourceMappingURL=single-screening.component.css.map */
