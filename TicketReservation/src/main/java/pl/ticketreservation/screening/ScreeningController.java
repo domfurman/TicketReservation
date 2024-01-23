@@ -1,13 +1,18 @@
 package pl.ticketreservation.screening;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import pl.ticketreservation.seat.seatrepository.JdbcSeatRepository;
 
-@Controller
+import java.util.List;
+
+@RestController
 public class ScreeningController {
     private final ScreeningService screeningService;
     private final JdbcSeatRepository jdbcSeatRepository;
@@ -19,14 +24,13 @@ public class ScreeningController {
         this.jdbcSeatRepository = jdbcSeatRepository;
     }
 
-    @GetMapping(path = "/screenings")
-    String getScreenings(Model model) {
-        model.addAttribute("screeningList",
-                screeningService.getAllScreenings());
-        return "all-screenings";
+    @GetMapping(path = "/api/screenings")
+    public ResponseEntity<List<Screening>> getScreenings(Model model) {
+        List<Screening> screenings = screeningService.getAllScreenings();
+        return new ResponseEntity<>(screenings, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/screenings/{screeningId}")
+    /*@GetMapping(path = "/screenings/{screeningId}")
     public String getScreening(@PathVariable("screeningId") int screeningId, Model model) {
         model.addAttribute("screening",
                 screeningService.getScreeningById(screeningId));
@@ -37,7 +41,7 @@ public class ScreeningController {
         model.addAttribute("movieName",
                 screeningService.findMovieNameByScreeningId(screeningId));
         return "single-screening";
-    }
+    }*/
 }
 
 
