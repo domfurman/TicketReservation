@@ -1,7 +1,7 @@
-# Ticket Reservation System
+# Ticket Reservation System (Out-of-date)
+
 ## Overview
 Ticket Reservation System is a web application designed for managing and reserving tickets for movie screenings. This project provides a user-friendly interface for users to choose seats, reserve tickets, and view their reservations.
-
 ## Features
 * Seat selection in an auditorium layout.
 * Simplified user registration and management.
