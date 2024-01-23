@@ -1,0 +1,9 @@
+<div id="screening-container">
+  <div *ngFor="let screening of screeningsList" class="screening-card">
+    <h3>{{ screening.movieName }}</h3>
+    <p>Date: <span>{{ screening.date | date: 'dd-MM-yyyy' }}</span></p>
+    <p>Time: <span>{{ screening.date | date: 'HH:mm'}}</span></p>
+    <p>Auditorium: <span>{{ screening.auditoriumName }}</span></p>
+    <button class="btn-buy-ticket">BUY TICKET</button>
+  </div>
+</div>
