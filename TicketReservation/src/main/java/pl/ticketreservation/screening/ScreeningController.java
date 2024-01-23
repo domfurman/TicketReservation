@@ -32,9 +32,9 @@ public class ScreeningController {
         return new ResponseEntity<>(screenings, HttpStatus.OK);
     }
 
-    /*@GetMapping(path = "/screenings/{screeningId}")
-    public String getScreening(@PathVariable("screeningId") int screeningId, Model model) {
-        model.addAttribute("screening",
+    @GetMapping(path = "/screenings/{screeningId}")
+    public ResponseEntity<Screening> getScreening(@PathVariable("screeningId") int screeningId, Model model) {
+        /*model.addAttribute("screening",
                 screeningService.getScreeningById(screeningId));
         model.addAttribute("seats",
                 jdbcSeatRepository.findSeatsByScreeningId(screeningId));
@@ -42,8 +42,10 @@ public class ScreeningController {
                 jdbcSeatRepository.findAvailableSeatsByScreeningId(screeningId));
         model.addAttribute("movieName",
                 screeningService.findMovieNameByScreeningId(screeningId));
-        return "single-screening";
-    }*/
+        return "single-screening";*/
+        Screening screening = screeningService.getScreeningById(screeningId);
+        return new ResponseEntity<>(screening, HttpStatus.OK);
+    }
 }
 
 

@@ -1,6 +1,7 @@
 package pl.ticketreservation.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +16,9 @@ public class UserController {
     public UserController(JdbcUserRepository jdbcUserRepository) {this.jdbcUserRepository = jdbcUserRepository;}
 
     @PostMapping(value = "/make-new-user")
-    public int makeUser(@RequestBody User user){
-        return jdbcUserRepository.makeUser(user);
+    public ResponseEntity<Integer> makeUser(@RequestBody User user){
+        Integer u = jdbcUserRepository.makeUser(user);
+        return ResponseEntity.ok(u);
     }
 
 

@@ -34,8 +34,9 @@ public class TicketController {
     }
 
     @GetMapping(path = "api/tickets")
-    public List<Ticket> getAllTickets() {
-        return ticketService.getAllTickets();
+    public ResponseEntity<List<Ticket>> getAllTickets() {
+        List<Ticket> tickets = ticketService.getAllTickets();
+        return new ResponseEntity<>(tickets, HttpStatus.OK);
     }
 
 //    @ResponseBody
@@ -46,12 +47,14 @@ public class TicketController {
     }
 
     @GetMapping(path = "ticket/{id}")
-    public String getTicketById(@PathVariable("id") int ticketId, Model model) {
-        model.addAttribute("ticket", ticketService.getTicketById(ticketId));
+    public ResponseEntity<Ticket> getTicketById(@PathVariable("id") int ticketId) {
+        /*model.addAttribute("ticket", ticketService.getTicketById(ticketId));
         model.addAttribute("movie", movieService.getMovieInfoByTicketId(ticketId));
         model.addAttribute("screening", screeningService.getScreeningInfoByTicketId(ticketId));
         model.addAttribute("user", jdbcUserRepository.getUserInfoByTicketId(ticketId));
-        model.addAttribute("seat", jdbcSeatRepository.getSeatInfoByTicketId(ticketId));
-        return "ticket";
+        model.addAttribute("seat", jdbcSeatRepository.getSeatInfoByTicketId(ticketId));*/
+//        return "ticket";
+        Ticket ticket = ticketService.getTicketById(ticketId);
+        return new ResponseEntity<>(ticket, HttpStatus.OK);
     }
 }

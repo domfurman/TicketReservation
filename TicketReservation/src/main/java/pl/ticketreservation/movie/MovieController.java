@@ -1,6 +1,8 @@
 package pl.ticketreservation.movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +15,7 @@ import java.util.List;
 @RestController
 public class MovieController {
 
-    private MovieService movieService;
+    private final MovieService movieService;
 
     @Autowired
     public MovieController(MovieService movieService) {
@@ -21,12 +23,13 @@ public class MovieController {
     }
 
     @GetMapping(path = "/api/movies")
-    public List<Movie> getMovies() {
-        return movieService.getAllMovies();
+    public ResponseEntity<List<Movie>> getMovies() {
+        List<Movie> movies = movieService.getAllMovies();
+        return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
     @GetMapping("/api/{name}")
-    public Movie getByName(@PathVariable("name") String name, Model model) {
+    public ResponseEntity<Movie> getByName(@PathVariable("name") String name) {
         /*try {
             Movie movie = movieService.getMovieByName(name);
             model.addAttribute("movie", movie);
@@ -35,8 +38,7 @@ public class MovieController {
             return null;
         }*/
         Movie movie = movieService.getMovieByName(name);
-        model.addAttribute("movie", movie);
-        return movie;
+        return new ResponseEntity<>(movie, HttpStatus.OK);
     }
 }
 
