@@ -2,23 +2,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&display=swap");
 body {
   font-family: "Quicksand", sans-serif;
-  background-color: #0a53be;
 }
-body h1 {
+
+h1 {
   font-family: "Bebas Neue", sans-serif;
 }
-body h2 {
-  padding-top: 10px;
-  margin-bottom: -15px;
-}
-body .instr {
-  margin-bottom: -3px;
-}
-body .nav {
-  border-bottom: 3px solid black;
-  margin-bottom: 15px;
-}
-body .container {
+
+.container {
+  /*border: 5px solid;*/
   position: absolute;
   top: 30%;
   left: 50%;
@@ -26,30 +17,30 @@ body .container {
   padding: 10px;
   text-align: center;
 }
-body .container .auditorium {
-  margin-left: 30%;
+.container .auditorium {
+  margin-left: 37%;
 }
-body ol {
+.container ol {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-body .row .seats {
+.container .seats {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
 }
-body .row .seat {
+.container .seat {
   display: flex;
   flex: 0 0 14.2857142857%;
   padding: 5px;
   position: relative;
 }
-body .row .seat:nth-child(3) {
+.container .seat:nth-child(3) {
   margin-right: 14.2857142857%;
 }
-body .row .seat label {
+.container label {
   display: block;
   position: relative;
   width: 100%;
@@ -63,7 +54,7 @@ body .row .seat label {
   animation-duration: 300ms;
   animation-fill-mode: both;
 }
-body .row .seat label:before {
+.container label:before {
   content: "";
   position: absolute;
   width: 75%;
@@ -74,27 +65,27 @@ body .row .seat label:before {
   background: rgba(255, 255, 255, 0.4);
   border-radius: 3px;
 }
-body .row .seat label:hover {
+.container label:hover {
   cursor: pointer;
   box-shadow: 0 0 0px 2px #5C6AFF;
 }
-body .row .seat input[type=checkbox] {
+.container input[type=checkbox] {
   position: absolute;
   opacity: 0;
 }
-body .row .seat input[type=checkbox]:checked + label {
+.container input[type=checkbox]:checked + label {
   background: #ff9f2c;
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
   animation-duration: 300ms;
   animation-fill-mode: both;
 }
-body .row .seat input[type=checkbox]:disabled + label {
+.container input[type=checkbox]:disabled + label {
   background: #f42536;
   text-indent: -9999px;
   overflow: hidden;
 }
-body .row .seat input[type=checkbox]:disabled + label:after {
+.container input[type=checkbox]:disabled + label:after {
   content: "X";
   text-indent: 0;
   position: absolute;
@@ -102,11 +93,12 @@ body .row .seat input[type=checkbox]:disabled + label:after {
   left: 50%;
   transform: translate(-50%, 0%);
 }
-body .row .seat input[type=checkbox]:disabled + label:hover {
+.container input[type=checkbox]:disabled + label:hover {
   box-shadow: none;
   cursor: not-allowed;
 }
-body button {
+
+button {
   margin-bottom: 15px;
   font-size: 18px;
   color: #000000;
@@ -121,14 +113,14 @@ body button {
   transition-duration: 400ms;
   transition-property: color;
 }
-body button:focus, body button:hover {
+button:focus, button:hover {
   color: #464646;
 }
-body button:focus:after, body button:hover:after {
+button:focus:after, button:hover:after {
   width: 100%;
   left: 0%;
 }
-body button:after {
+button:after {
   content: "";
   pointer-events: none;
   bottom: -2px;
@@ -141,14 +133,17 @@ body button:after {
   transition-duration: 400ms;
   transition-property: width, left;
 }
-body .inputGroup {
+
+.inputGroup {
   margin-top: 5px;
   margin-bottom: 5px;
   font-family: "Segoe UI", sans-serif;
+  /*margin: 1em 0 1em 0;*/
   max-width: 190px;
+  /*position: relative;*/
   margin-left: 17%;
 }
-body .inputGroup input {
+.inputGroup input {
   font-size: 100%;
   padding: 0.8em;
   outline: none;

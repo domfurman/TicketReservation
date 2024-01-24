@@ -5,6 +5,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AllScreeningsComponent} from "./components/all-screenings/all-screenings.component";
 import {CinemaRoutingModule} from "./cinema-routing.module";
 import {SingleScreeningComponent} from "./components/single-screening/single-screening.component";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -13,11 +14,12 @@ import {SingleScreeningComponent} from "./components/single-screening/single-scr
     AllScreeningsComponent,
     SingleScreeningComponent
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    CinemaRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        CinemaRoutingModule,
+        FormsModule
+    ],
   providers: [
     CinemaService
   ]

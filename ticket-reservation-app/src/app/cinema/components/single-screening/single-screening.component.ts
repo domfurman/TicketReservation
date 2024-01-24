@@ -13,8 +13,7 @@ import {ScreeningDto} from "../../models/screening-dto";
 })
 export class SingleScreeningComponent implements OnInit{
   screeningDto: ScreeningDto = new ScreeningDto();
-  movie: Movie = new Movie();
-  fs: number[] = new Array<number>
+  showPrivateUserForm: boolean = true
 
   constructor(private cinemaService: CinemaService,
               private route: ActivatedRoute) {
@@ -36,6 +35,10 @@ export class SingleScreeningComponent implements OnInit{
   isSeatUnavailable(seat: any): boolean {
     const seatIdentifier = `${seat.row}${seat.seatNo}`;
     return !this.screeningDto.availableSeats.some(availableSeat => `${availableSeat.row}${availableSeat.seatNo}` === seatIdentifier);
+  }
+
+  changeForm() {
+    this.showPrivateUserForm = !this.showPrivateUserForm
   }
 }
 

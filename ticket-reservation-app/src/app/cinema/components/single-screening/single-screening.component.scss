@@ -4,6 +4,9 @@
 body {
   font-family: "Quicksand", sans-serif;
 }
+.form-choice {
+  padding-top: 13px;
+}
 
 h1 {
   font-family: "Bebas Neue", sans-serif;
@@ -170,9 +173,9 @@ button {
   margin-bottom: 5px;
   font-family: 'Segoe UI', sans-serif;
   /*margin: 1em 0 1em 0;*/
-  max-width: 190px;
+  max-width: 270px;
   /*position: relative;*/
-  margin-left: 17%;
+  margin-left: 40%;
 
   input {
     font-size: 100%;
@@ -182,5 +185,8 @@ button {
     background-color: transparent;
     border-radius: 20px;
     width: 100%;
+  }
+  .personal-details {
+    padding-top: 5px;
   }
 }
