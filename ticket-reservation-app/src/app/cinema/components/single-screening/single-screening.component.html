@@ -1,38 +1,43 @@
 <div class="container">
   <h2>Choose your seat for movie</h2>
   <h1 *ngIf="screeningDto">{{screeningDto.movie.movieName}}</h1>
-  <ol>
-    <li class="row row--1">
-      <ol class="seats">
-        <ng-container *ngFor="let seat of screeningDto.seats">
-          <li *ngIf="seat.row === '1'" class="seat">
-            <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}"/>
-            <label for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
-          </li>
-        </ng-container>
-      </ol>
-    </li>
+  <div class="auditorium">
+    <ol>
+      <li class="row row--1">
+        <ol class="seats">
+          <ng-container *ngFor="let seat of screeningDto.seats">
+            <li *ngIf="seat.row === '1'" class="seat">
+              <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)"/>
+              <label for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
+            </li>
+          </ng-container>
+        </ol>
+      </li>
 
-    <li class="row row--2">
-      <ol class="seats">
-        <ng-container *ngFor="let seat of screeningDto.seats">
-          <li *ngIf="seat.row === '2'" class="seat">
-            <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}"/>
-            <label for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
-          </li>
-        </ng-container>
-      </ol>
-    </li>
+      <li class="row row--2">
+        <ol class="seats">
+          <ng-container *ngFor="let seat of screeningDto.seats">
+            <li *ngIf="seat.row === '2'" class="seat">
+              <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)" />
+              <label for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
+            </li>
+          </ng-container>
+        </ol>
+      </li>
 
-    <li class="row row--3">
-      <ol class="seats">
-        <ng-container *ngFor="let seat of screeningDto.seats">
-          <li *ngIf="seat.row === '3'" class="seat">
-            <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}"/>
-            <label for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
-          </li>
-        </ng-container>
-      </ol>
-    </li>
-  </ol>
+      <li class="row row--3">
+        <ol class="seats">
+          <ng-container *ngFor="let seat of screeningDto.seats">
+            <li *ngIf="seat.row === '3'" class="seat">
+              <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)"/>
+              <label for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
+            </li>
+          </ng-container>
+        </ol>
+      </li>
+    </ol>
+  </div>
+  <div class="instr">
+    <p>Enter your personal details</p>
+  </div>
 </div>

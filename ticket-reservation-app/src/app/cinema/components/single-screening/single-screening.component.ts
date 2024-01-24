@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CinemaService} from "../../services/cinema.service";
 import {ActivatedRoute} from "@angular/router";
 import {Movie} from "../../models/movie";
@@ -8,11 +8,13 @@ import {ScreeningDto} from "../../models/screening-dto";
   selector: 'app-single-screenings',
   standalone: false,
   templateUrl: './single-screening.component.html',
-  styleUrl: './single-screening.component.scss'
+  styleUrl: './single-screening.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class SingleScreeningComponent implements OnInit{
   screeningDto: ScreeningDto = new ScreeningDto();
   movie: Movie = new Movie();
+  fs: number[] = new Array<number>
 
   constructor(private cinemaService: CinemaService,
               private route: ActivatedRoute) {
@@ -29,6 +31,11 @@ export class SingleScreeningComponent implements OnInit{
         this.screeningDto = screeningDto;
       });
     });
+  }
+
+  isSeatUnavailable(seat: any): boolean {
+    const seatIdentifier = `${seat.row}${seat.seatNo}`;
+    return !this.screeningDto.availableSeats.some(availableSeat => `${availableSeat.row}${availableSeat.seatNo}` === seatIdentifier);
   }
 }
 
