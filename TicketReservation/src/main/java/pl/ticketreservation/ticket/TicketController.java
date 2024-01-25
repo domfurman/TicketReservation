@@ -40,13 +40,13 @@ public class TicketController {
     }
 
 //    @ResponseBody
-    @PostMapping(value = "/make-ticket-reservation")
+    @PostMapping(value = "api/make-ticket-reservation")
     public ResponseEntity<Integer> makeTicketReservation(@RequestBody Ticket ticket){
         int ticketId =  ticketService.makeTicketReservation(ticket);
         return ResponseEntity.ok(ticketId);
     }
 
-    @GetMapping(path = "ticket/{id}")
+    @GetMapping(path = "api/ticket/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable("id") int ticketId) {
         /*model.addAttribute("ticket", ticketService.getTicketById(ticketId));
         model.addAttribute("movie", movieService.getMovieInfoByTicketId(ticketId));
