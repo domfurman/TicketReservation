@@ -6,13 +6,15 @@ import {AllScreeningsComponent} from "./components/all-screenings/all-screenings
 import {CinemaRoutingModule} from "./cinema-routing.module";
 import {SingleScreeningComponent} from "./components/single-screening/single-screening.component";
 import {FormsModule} from "@angular/forms";
+import {HomepageComponent} from "./components/homepage/homepage.component";
 
 
 
 @NgModule({
   declarations: [
     AllScreeningsComponent,
-    SingleScreeningComponent
+    SingleScreeningComponent,
+    HomepageComponent
   ],
     imports: [
         CommonModule,
