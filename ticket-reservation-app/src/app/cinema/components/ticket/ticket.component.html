@@ -1,1 +1,36 @@
-<p>ticket works!</p>
+<ng-container *ngIf="ticketDTO">
+  <div class="cardWrap">
+    <div class="card cardLeft">
+      <h1>Sigma <span>Cinema</span></h1>
+      <div class="title">
+        <h2>{{ ticketDTO.movie.movieName }}</h2>
+        <span>movie</span>
+      </div>
+
+      <div class="name">
+        <h2>{{ ticketDTO.user.name }}  {{ ticketDTO.user.surname }}</h2>
+        <span>owner</span>
+      </div>
+
+      <div class="seat">
+        <h2>{{ ticketDTO.seat.row }}{{ ticketDTO.seat.seatNo }}</h2>
+        <span>seat</span>
+      </div>
+
+      <div class="time">
+        <h2>{{ ticketDTO.screening.date | date: 'HH:mm' }}</h2>
+        <span>time</span>
+      </div>
+    </div>
+
+    <div class="card cardRight">
+      <div class="eye"></div>
+      <div class="number">
+        <h3 id="seatid">{{ ticketDTO.seat.row }}{{ ticketDTO.seat.seatNo }}</h3>
+        <span>seat</span>
+      </div>
+      <div class="barcode"></div>
+    </div>
+
+  </div>
+</ng-container>

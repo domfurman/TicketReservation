@@ -6,6 +6,7 @@ import {environment} from "../../../environments/environment";
 import {Movie} from "../models/movie";
 import {ScreeningDto} from "../models/screening-dto";
 import {Ticket} from "../models/ticket";
+import {TicketDto} from "../models/ticket-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class CinemaService {
     return this.http.get<ScreeningDto>(`${this.basicUrl}/api/screenings/${screeningId}`)
   }
 
-  getSingleTicket(ticketId: number): Observable<Ticket> {
-    return this.http.get<Ticket>(`${this.basicUrl}/api/ticket/${ticketId}`)
+  getSingleTicket(ticketId: number): Observable<TicketDto> {
+    return this.http.get<TicketDto>(`${this.basicUrl}/api/ticket/${ticketId}`)
   }
 }

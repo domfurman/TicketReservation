@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CinemaService} from "../../services/cinema.service";
 import {ActivatedRoute} from "@angular/router";
 import {Ticket} from "../../models/ticket";
+import {TicketDto} from "../../models/ticket-dto";
 
 @Component({
   selector: 'app-ticket',
@@ -10,7 +11,7 @@ import {Ticket} from "../../models/ticket";
   styleUrl: './ticket.component.scss'
 })
 export class TicketComponent implements OnInit{
-  ticket: Ticket = new Ticket()
+  ticketDTO: TicketDto = new TicketDto()
   constructor(private cinemaService: CinemaService,
               private route: ActivatedRoute) {
   }
@@ -22,8 +23,8 @@ export class TicketComponent implements OnInit{
   loadSingleScreening(): void {
     this.route.params.subscribe(params => {
       const ticketId = +params['ticketId'];
-      this.cinemaService.getSingleTicket(ticketId).subscribe(ticket => {
-      this.ticket = ticket;
+      this.cinemaService.getSingleTicket(ticketId).subscribe(ticketDto => {
+        this.ticketDTO = ticketDto
       });
     });
   }
