@@ -8,7 +8,7 @@
           <ng-container *ngFor="let seat of screeningDto.seats">
             <li *ngIf="seat.row === '1'" class="seat">
               <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)"/>
-              <label for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
+              <label class="seat-label" for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
             </li>
           </ng-container>
         </ol>
@@ -19,7 +19,7 @@
           <ng-container *ngFor="let seat of screeningDto.seats">
             <li *ngIf="seat.row === '2'" class="seat">
               <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)" />
-              <label for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
+              <label class="seat-label" for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
             </li>
           </ng-container>
         </ol>
@@ -30,7 +30,7 @@
           <ng-container *ngFor="let seat of screeningDto.seats">
             <li *ngIf="seat.row === '3'" class="seat">
               <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)"/>
-              <label for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
+              <label class="seat-label" for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
             </li>
           </ng-container>
         </ol>
@@ -95,7 +95,13 @@
       <input type="text"  name="userName" required placeholder="enter your company's name">
     </div>
     <div id="companyIndustry" class="personal-details">
-      <label></label>
+<!--      <label for="companyIndustry">Industry</label>-->
+      <select name="industry">
+        <option selected disabled hidden>Industry</option>
+        <option>Information Technology</option>
+        <option>Finance & Accounting</option>
+        <option>Engineering</option>
+      </select>
     </div>
   </form>
 
