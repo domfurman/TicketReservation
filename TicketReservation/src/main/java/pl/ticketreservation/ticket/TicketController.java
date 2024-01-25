@@ -18,7 +18,8 @@ import pl.ticketreservation.user.userrepository.JdbcUserRepository;
 
 import java.util.List;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class TicketController {
 
     private final TicketService ticketService;
@@ -63,7 +64,7 @@ public class TicketController {
         User user = jdbcUserRepository.getUserInfoByTicketId(ticketId);
         Seat seat = jdbcSeatRepository.getSeatInfoByTicketId(ticketId);
 
-        TicketDTO ticketDTO = new TicketDTO(ticket, screening, user, seat);
+        TicketDTO ticketDTO = new TicketDTO(ticket, movie, screening, user, seat);
 
         return new ResponseEntity<>(ticketDTO, HttpStatus.OK);
     }
