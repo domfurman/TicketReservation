@@ -7,6 +7,7 @@ import {CinemaRoutingModule} from "./cinema-routing.module";
 import {SingleScreeningComponent} from "./components/single-screening/single-screening.component";
 import {FormsModule} from "@angular/forms";
 import {HomepageComponent} from "./components/homepage/homepage.component";
+import {TicketComponent} from "./components/ticket/ticket.component";
 
 
 
@@ -14,7 +15,8 @@ import {HomepageComponent} from "./components/homepage/homepage.component";
   declarations: [
     AllScreeningsComponent,
     SingleScreeningComponent,
-    HomepageComponent
+    HomepageComponent,
+    TicketComponent
   ],
     imports: [
         CommonModule,

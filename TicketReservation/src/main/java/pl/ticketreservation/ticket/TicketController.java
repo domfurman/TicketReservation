@@ -8,9 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.ticketreservation.movie.Movie;
 import pl.ticketreservation.movie.MovieService;
+import pl.ticketreservation.screening.Screening;
 import pl.ticketreservation.screening.ScreeningService;
+import pl.ticketreservation.seat.Seat;
 import pl.ticketreservation.seat.seatrepository.JdbcSeatRepository;
 import pl.ticketreservation.ticket.ticketrepository.JdbcTicketRepository;
+import pl.ticketreservation.user.User;
 import pl.ticketreservation.user.userrepository.JdbcUserRepository;
 
 import java.util.List;
@@ -47,7 +50,7 @@ public class TicketController {
     }
 
     @GetMapping(path = "api/ticket/{id}")
-    public ResponseEntity<Ticket> getTicketById(@PathVariable("id") int ticketId) {
+    public ResponseEntity<TicketDTO> getTicketById(@PathVariable("id") int ticketId) {
         /*model.addAttribute("ticket", ticketService.getTicketById(ticketId));
         model.addAttribute("movie", movieService.getMovieInfoByTicketId(ticketId));
         model.addAttribute("screening", screeningService.getScreeningInfoByTicketId(ticketId));
@@ -55,6 +58,13 @@ public class TicketController {
         model.addAttribute("seat", jdbcSeatRepository.getSeatInfoByTicketId(ticketId));*/
 //        return "ticket";
         Ticket ticket = ticketService.getTicketById(ticketId);
-        return new ResponseEntity<>(ticket, HttpStatus.OK);
+        Movie movie = movieService.getMovieInfoByTicketId(ticketId);
+        Screening screening = screeningService.getScreeningInfoByTicketId(ticketId);
+        User user = jdbcUserRepository.getUserInfoByTicketId(ticketId);
+        Seat seat = jdbcSeatRepository.getSeatInfoByTicketId(ticketId);
+
+        TicketDTO ticketDTO = new TicketDTO(ticket, screening, user, seat);
+
+        return new ResponseEntity<>(ticketDTO, HttpStatus.OK);
     }
 }
