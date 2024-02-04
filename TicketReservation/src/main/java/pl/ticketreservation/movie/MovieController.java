@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.ticketreservation.movie.movierepository.JdbcMovieRepository;
 import pl.ticketreservation.movie.movierepository.MovieNotFoundException;
 
@@ -39,6 +37,16 @@ public class MovieController {
         }*/
         Movie movie = movieService.getMovieByName(name);
         return new ResponseEntity<>(movie, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/api/add-movie")
+    public ResponseEntity<Integer> addMovie(@RequestBody Movie movie) {
+        /*Movie movie = new Movie();
+        movie.setMovieName(movieName);
+        movie.setDuration(duration);
+        movie.setForAdults(forAdults);*/
+        int id = movieService.addMovie(movie);
+        return ResponseEntity.ok(id);
     }
 }
 

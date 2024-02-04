@@ -9,4 +9,6 @@ public interface MovieRepository {
     Movie getByName(String name) throws MovieNotFoundException;
 
     Movie getMovieInfoByTicketId(int ticketId);
+
+    int addMovie(Movie movie);
 }

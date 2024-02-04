@@ -38,4 +38,8 @@ public class MovieService {
     public Movie getMovieInfoByTicketId(int ticketId) {
         return movieRepository.getMovieInfoByTicketId(ticketId);
     }
+
+    public int addMovie(Movie movie) {
+        return movieRepository.addMovie(movie);
+    }
 }

@@ -26,6 +26,15 @@ public class JdbcMovieRepository implements MovieRepository{
     }
 
     @Override
+    public int addMovie(Movie movie) {
+        return jdbcTemplate.update("""
+            INSERT INTO movie(movieName, duration, forAdults)
+            VALUES(?, ?, ?)
+            """,
+                movie.getMovieName(), movie.getDuration(), movie.getForAdults());
+    }
+
+    @Override
     public List<Movie> findAll() {
         return jdbcTemplate.query("SELECT * FROM movie",
                 BeanPropertyRowMapper.newInstance(Movie.class));
