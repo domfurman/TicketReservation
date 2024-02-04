@@ -14,4 +14,6 @@ public interface ScreeningRepository {
     Screening getScreeningInfoByTicketId(int ticketId);
 
     Movie findMovieByScreeningId(int screeningId);
+
+    int createNewScreening(Screening screening);
 }

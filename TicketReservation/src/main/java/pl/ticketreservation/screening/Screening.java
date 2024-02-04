@@ -13,8 +13,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Screening {
     public int screeningId;
-    public String movieName;
+    public int movieId;
     public LocalDateTime date;
+    public int auditoriumId;
+    public String movieName;
     public String auditoriumName;
 
 }

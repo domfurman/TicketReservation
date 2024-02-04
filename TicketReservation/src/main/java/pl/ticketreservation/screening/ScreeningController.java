@@ -5,10 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.ticketreservation.movie.Movie;
 import pl.ticketreservation.seat.Seat;
 import pl.ticketreservation.seat.seatrepository.JdbcSeatRepository;
@@ -29,7 +26,7 @@ public class ScreeningController {
     }
 
     @GetMapping(path = "/api/screenings")
-    public ResponseEntity<List<Screening>> getScreenings(Model model) {
+    public ResponseEntity<List<Screening>> getScreenings() {
         List<Screening> screenings = screeningService.getAllScreenings();
         return new ResponseEntity<>(screenings, HttpStatus.OK);
     }
@@ -44,6 +41,12 @@ public class ScreeningController {
         ScreeningDTO screeningDTO = new ScreeningDTO(screening, movie, seats, availableSeats);
 
         return new ResponseEntity<>(screeningDTO, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "api/add-screening")
+    public ResponseEntity<Integer> createNewScreening(@RequestBody Screening screening) {
+        int id = screeningService.createNewScreening(screening);
+        return ResponseEntity.ok(id);
     }
 }
 

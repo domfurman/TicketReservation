@@ -60,4 +60,12 @@ public class JdbcScreeningRepository implements ScreeningRepository {
                 """,
                 BeanPropertyRowMapper.newInstance(Movie.class), screeningId);
     }
+
+    @Override
+    public int createNewScreening(Screening screening) {
+        return jdbcTemplate.update("""
+            INSERT INTO screening(date, movieId, auditoriumId)
+            VALUES(?, ?, ?)
+            """, screening.getDate(), screening.getMovieId(), screening.getAuditoriumId());
+    }
 }
