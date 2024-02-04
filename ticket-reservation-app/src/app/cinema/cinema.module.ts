@@ -8,6 +8,7 @@ import {SingleScreeningComponent} from "./components/single-screening/single-scr
 import {FormsModule} from "@angular/forms";
 import {HomepageComponent} from "./components/homepage/homepage.component";
 import {TicketComponent} from "./components/ticket/ticket.component";
+import {MovieFormComponent} from "./components/movie-form/movie-form.component";
 
 
 
@@ -16,7 +17,8 @@ import {TicketComponent} from "./components/ticket/ticket.component";
     AllScreeningsComponent,
     SingleScreeningComponent,
     HomepageComponent,
-    TicketComponent
+    TicketComponent,
+    MovieFormComponent
   ],
     imports: [
         CommonModule,

@@ -27,4 +27,8 @@ export class CinemaService {
   getSingleTicket(ticketId: number): Observable<TicketDto> {
     return this.http.get<TicketDto>(`${this.basicUrl}/api/ticket/${ticketId}`)
   }
+
+  addNewMovie(movie: Movie): Observable<Movie> {
+    return this.http.post<Movie>(`${this.basicUrl}/api/add-movie`, movie)
+  }
 }

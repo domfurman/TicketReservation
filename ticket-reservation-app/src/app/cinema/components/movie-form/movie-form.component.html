@@ -1,0 +1,13 @@
+<form (ngSubmit)="onSubmit(movieForm)" #movieForm="ngForm">
+  <div>
+    <input type="text" required placeholder="type movie name" name="movieName" [(ngModel)]="movie.movieName">
+  </div>
+  <div>
+    <input type="number" required placeholder="type duration" name="duration" [(ngModel)]="movie.duration">
+  </div>
+  <div>
+    <label>Is movie for adult audience?</label>
+    <input type="checkbox" name="forAdults" [(ngModel)]="movie.forAdults">
+  </div>
+  <button type="submit">Submit</button>
+</form>

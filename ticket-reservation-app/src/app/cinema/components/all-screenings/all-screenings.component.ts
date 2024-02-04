@@ -29,4 +29,8 @@ export class AllScreeningsComponent implements OnInit{
     // console.log(screeningId)
     this.router.navigate(['/cinema/screenings', screeningId]);
   }
+
+  redirectToAddMovieForm(): void {
+    this.router.navigate(['/cinema/add-movie'])
+  }
 }
