@@ -1,0 +1,90 @@
+<form (ngSubmit)="onSubmit(screeningForm)" #screeningForm="ngForm">
+  <div>
+      <label>Select movie</label>
+      <select name="movieId" [(ngModel)]="screening.movieId">
+        <option *ngFor="let movie of moviesList" [ngValue]="movie.movieId">{{ movie.movieName }}</option>
+      </select>
+  </div>
+  <div>
+    <input type="datetime-local" required placeholder="type screening date" name="date" [(ngModel)]="screening.date">
+  </div>
+  <div>
+    <input type="number" required placeholder="screening's auditorium" name="movieId" [(ngModel)]="screening.auditoriumId">
+  </div>
+  <button type="submit">Submit</button>
+</form>
+<p>{{screening.movieId}}</p>
+<p>{{screening.date}}</p>
+<p>{{screening.auditoriumId}}</p>
+
+
+<!--<form (ngSubmit)="onSubmit(screeningForm)" #screeningForm="ngForm">
+  <div>
+    <mat-form-field>
+      <mat-label>Select movie</mat-label>
+      <mat-select name="movieId" [(ngModel)]="screening.movieId">
+        <mat-option *ngFor="let movie of moviesList" [value]="movie">
+          {{ movie.movieName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  &lt;!&ndash;  <p>you selected movie with id: {{selectedMovie?.movieName}}</p>&ndash;&gt;
+
+  <div>
+    <mat-form-field>
+      <mat-label>Select date and time</mat-label>
+      <input matInput type="datetime-local" placeholder="start date" name="date" [(ngModel)]="screening.date">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Select auditorium</mat-label>
+      <input matInput value="1" type="number" name="auditoriumId" [(ngModel)]="screening.auditoriumId">
+    </mat-form-field>
+  </div>
+
+  <button type="submit">Submit</button>
+
+</form>-->
+
+<!--<form [formGroup]="screeningForm" (ngSubmit)="onSubmit()">
+  <div>
+    <mat-form-field>
+      <mat-label>Select movie</mat-label>
+      <mat-select formControlName="movieId">
+        <mat-option *ngFor="let movie of moviesList" [value]="movie.movieId">
+          {{ movie.movieName }}
+        </mat-option>
+      </mat-select>
+&lt;!&ndash;      <mat-error *ngIf="screeningForm.get('movieId').hasError('required')">Movie is required</mat-error>&ndash;&gt;
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Select date and time</mat-label>
+      <input matInput [matDatetimepicker]="picker" formControlName="date" placeholder="start date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datetimepicker #picker></mat-datetimepicker>
+&lt;!&ndash;      <mat-error *ngIf="screeningForm.get('date').hasError('required')">Date and time are required</mat-error>&ndash;&gt;
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-label>Select auditorium</mat-label>
+      <input matInput type="number" formControlName="auditoriumId">
+&lt;!&ndash;      <mat-error *ngIf="screeningForm.get('auditoriumId').hasError('required')">Auditorium is required</mat-error>&ndash;&gt;
+    </mat-form-field>
+  </div>
+
+  <button type="submit" [disabled]="!screeningForm.valid">Submit</button>
+</form>-->
+
+
+
+
+
+

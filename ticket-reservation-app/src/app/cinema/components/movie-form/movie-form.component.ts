@@ -28,5 +28,8 @@ export class MovieFormComponent {
       }
     )
     this.router.navigate(['/cinema/screenings'])
+      .then(() => {
+        window.location.reload();
+      })
   }
 }

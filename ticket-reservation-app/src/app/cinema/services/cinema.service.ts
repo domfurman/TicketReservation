@@ -31,4 +31,12 @@ export class CinemaService {
   addNewMovie(movie: Movie): Observable<Movie> {
     return this.http.post<Movie>(`${this.basicUrl}/api/add-movie`, movie)
   }
+
+  addNewScreening(screening: Screening): Observable<Screening> {
+    return this.http.post<Screening>(`${this.basicUrl}/api/add-screening`, screening)
+  }
+
+  getAllMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.basicUrl}/api/movies`)
+  }
 }
