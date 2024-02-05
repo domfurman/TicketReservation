@@ -1,21 +1,26 @@
-<form (ngSubmit)="onSubmit(screeningForm)" #screeningForm="ngForm">
-  <div>
-      <label>Select movie</label>
-      <select name="movieId" [(ngModel)]="screening.movieId">
-        <option *ngFor="let movie of moviesList" [ngValue]="movie.movieId">{{ movie.movieName }}</option>
-      </select>
-  </div>
-  <div>
-    <input type="datetime-local" required placeholder="type screening date" name="date" [(ngModel)]="screening.date">
-  </div>
-  <div>
-    <input type="number" required placeholder="screening's auditorium" name="movieId" [(ngModel)]="screening.auditoriumId">
-  </div>
-  <button type="submit">Submit</button>
-</form>
-<p>{{screening.movieId}}</p>
+<h2>Form for adding a screening</h2>
+<div class="container">
+  <form (ngSubmit)="onSubmit(screeningForm)" #screeningForm="ngForm" class="inputGroup">
+    <div class="screening-details" id="movie-choice">
+        <label>Select movie</label>
+        <select name="movieId" [(ngModel)]="screening.movieId">
+          <option *ngFor="let movie of moviesList" [ngValue]="movie.movieId">{{ movie.movieName }}</option>
+        </select>
+    </div>
+    <div class="screening-details">
+      <label>Select date</label>
+      <input type="datetime-local" required placeholder="type screening date" name="date" [(ngModel)]="screening.date">
+    </div>
+    <div class="screening-details">
+      <label>Select auditorium</label>
+      <input type="number" value="1" min="1" max="1" required placeholder="screening's auditorium" name="auditoriumId" [(ngModel)]="screening.auditoriumId">
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+<!--<p>{{screening.movieId}}</p>
 <p>{{screening.date}}</p>
-<p>{{screening.auditoriumId}}</p>
+<p>{{screening.auditoriumId}}</p>-->
 
 
 <!--<form (ngSubmit)="onSubmit(screeningForm)" #screeningForm="ngForm">

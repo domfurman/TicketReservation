@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Russo+One&display=swap');
+
+body {
+  font-family: "Quicksand", sans-serif;
+}
+h2 {
+  text-align: center;
+}
+
+.container {
+  /*border: 5px solid;*/
+  /*position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  text-align: center;*/
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  text-align: center;
+}
+button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #000000;
+  font-family: inherit;
+  font-weight: normal;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  text-transform: uppercase;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+
+  &:focus,
+  &:hover {
+    color: #464646;
+  }
+
+  &:focus:after,
+  &:hover:after {
+    width: 100%;
+    left: 0%;
+  }
+
+  &:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #464646;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+  }
+}
+
+.inputGroup {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: 'Segoe UI', sans-serif;
+  /*margin: 1em 0 1em 0;*/
+  max-width: 270px;
+  /*position: relative;*/
+  //margin-left: 40%;
+
+  input {
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: transparent;
+    border-radius: 20px;
+    width: 100%;
+  }
+  .screening-details {
+    padding-top: 5px;
+  }
+
+  #movie-choice label {
+    display: block;
+    margin-bottom: 5px; /* Add some space between label and select */
+  }
+
+  #movie-choice select {
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: transparent;
+    border-radius: 20px;
+    width: 100%;
+  }
+}
