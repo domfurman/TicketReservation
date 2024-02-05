@@ -3,6 +3,9 @@ import {CinemaService} from "../../services/cinema.service";
 import {ActivatedRoute} from "@angular/router";
 import {Movie} from "../../models/movie";
 import {ScreeningDto} from "../../models/screening-dto";
+import {Ticket} from "../../models/ticket";
+import {NgForm} from "@angular/forms";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-single-screenings',
@@ -11,34 +14,61 @@ import {ScreeningDto} from "../../models/screening-dto";
   styleUrl: './single-screening.component.scss',
   encapsulation: ViewEncapsulation.None
 })
-export class SingleScreeningComponent implements OnInit{
-  screeningDto: ScreeningDto = new ScreeningDto();
-  showPrivateUserForm: boolean = true
+export class SingleScreeningComponent implements OnInit {
+    screeningDto: ScreeningDto = new ScreeningDto();
+    showPrivateUserForm: boolean = true
+    ticket: Ticket = new Ticket();
+    user: User = new User();
 
-  constructor(private cinemaService: CinemaService,
-              private route: ActivatedRoute) {
-  }
+    constructor(private cinemaService: CinemaService,
+                private route: ActivatedRoute) {
+    }
 
-  ngOnInit(): void {
-    this.loadSingleScreening()
-  }
+    ngOnInit(): void {
+        this.loadSingleScreening()
+    }
 
-  loadSingleScreening(): void {
-    this.route.params.subscribe(params => {
-      const screeningId = +params['screeningId'];
-      this.cinemaService.getSingleScreening(screeningId).subscribe(screeningDto => {
-        this.screeningDto = screeningDto;
-      });
-    });
-  }
+    loadSingleScreening(): void {
+        this.route.params.subscribe(params => {
+            const screeningId = +params['screeningId'];
+            this.cinemaService.getSingleScreening(screeningId).subscribe(screeningDto => {
+                this.screeningDto = screeningDto;
+            });
+        });
+    }
 
-  isSeatUnavailable(seat: any): boolean {
-    const seatIdentifier = `${seat.row}${seat.seatNo}`;
-    return !this.screeningDto.availableSeats.some(availableSeat => `${availableSeat.row}${availableSeat.seatNo}` === seatIdentifier);
-  }
+    isSeatUnavailable(seat: any): boolean {
+        const seatIdentifier = `${seat.row}${seat.seatNo}`;
+        return !this.screeningDto.availableSeats.some(availableSeat => `${availableSeat.row}${availableSeat.seatNo}` === seatIdentifier);
+    }
 
-  changeForm() {
-    this.showPrivateUserForm = !this.showPrivateUserForm
-  }
+    changeForm() {
+        this.showPrivateUserForm = !this.showPrivateUserForm
+    }
+
+    onSubmitMakeTicketReservation(reservationForm: NgForm) {
+        this.cinemaService.makeTicketReservation(this.ticket).subscribe(
+            (result) => {
+                console.log('poszlo')
+            },
+            (error) => {
+                console.error('nie poszlo', error)
+            }
+        )
+    }
+
+    onCheckboxChange(event: any) {
+        console.log('Checkbox clicked:', event);
+    }
+
+    makeUser(reservationForm: NgForm) {
+      this.cinemaService.makeUser(this.user).subscribe(
+          (result: User) => {
+            console.log('poszlo')
+          }, (error) => {
+            console.error(error)
+          }
+      )
+    }
 }
 

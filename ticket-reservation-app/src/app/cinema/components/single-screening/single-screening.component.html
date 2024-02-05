@@ -7,7 +7,7 @@
         <ol class="seats">
           <ng-container *ngFor="let seat of screeningDto.seats">
             <li *ngIf="seat.row === '1'" class="seat">
-              <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)"/>
+              <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)" (change)="onCheckboxChange(seat)"/>
               <label class="seat-label" for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
             </li>
           </ng-container>
@@ -18,7 +18,7 @@
         <ol class="seats">
           <ng-container *ngFor="let seat of screeningDto.seats">
             <li *ngIf="seat.row === '2'" class="seat">
-              <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)" />
+              <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)" (change)="onCheckboxChange(seat)"/>
               <label class="seat-label" for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
             </li>
           </ng-container>
@@ -29,7 +29,7 @@
         <ol class="seats">
           <ng-container *ngFor="let seat of screeningDto.seats">
             <li *ngIf="seat.row === '3'" class="seat">
-              <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)"/>
+              <input type="checkbox" id="{{seat.row}}{{seat.seatNo}}" [disabled]="isSeatUnavailable(seat)" (change)="onCheckboxChange(seat)"/>
               <label class="seat-label" for="{{seat.row}}{{seat.seatNo}}">{{seat.row}}{{seat.seatNo}}</label>
             </li>
           </ng-container>
@@ -40,36 +40,37 @@
   <div class="form-choice">
     I'm buying as:
     <input type="radio" name="userType" (click)="changeForm()" value="true" checked /> Private User
-    <input type="radio" name="userType" (click)="changeForm()" value="false" /> Company
+<!--    <input type="radio" name="userType" (click)="changeForm()" value="false" /> Company-->
   </div>
   <div class="instr">
     <p>Enter your personal details</p>
   </div>
 
-  <form *ngIf="showPrivateUserForm" id="ticketForm" class="inputGroup">
-    <div id="userName" class="personal-details">
-      <input type="text"  name="userName" required placeholder="enter your name">
+  <form *ngIf="showPrivateUserForm" id="ticketForm" class="inputGroup" (ngSubmit)="makeUser(reservationForm)" #reservationForm="ngForm">
+    <div id="userName" class="personal-details" >
+      <input type="text"  name="name" required placeholder="enter your name" [(ngModel)]="user.name">
     </div>
-    <div id="userSurname" class="personal-details">
-      <input type="text" name="userSurname" required placeholder="enter your surname">
+    <div id="userSurname" class="personal-details" >
+      <input type="text" required placeholder="enter your surname" name="surname" [(ngModel)]="user.surname">
     </div>
-    <!--<div id="userEmail" class="personal-details">
-      <input type="text" name="userEmail" required placeholder="enter your email">
+    <div id="userEmail" class="personal-details" >
+      <input type="email" required placeholder="enter your email" name="email" [(ngModel)]="user.email">
     </div>
-    <div id="userPhoneNumber" class="personal-details">
+    <!--<div id="userPhoneNumber" class="personal-details">
       <input type="text" name="userPhoneNumber" required placeholder="enter your phone number">
-    </div>
-    <div id="userCity" class="personal-details">
+    </div>-->
+    <!--<div id="userCity" class="personal-details">
       <input type="text" name="userSurname" required placeholder="enter your city">
-    </div>
-    <div id="userHouseNumber" class="personal-details">
+    </div>-->
+    <!--<div id="userHouseNumber" class="personal-details">
       <input type="text" name="userSurname" required placeholder="enter your house number">
-    </div>
-    <div id="userPostcode" class="personal-details">
+    </div>-->
+    <!--<div id="userPostcode" class="personal-details">
       <input type="text" name="userSurname" required placeholder="enter your post code">
     </div>-->
+    <button type="submit">Reserve Ticket</button>
   </form>
-  <form *ngIf="!showPrivateUserForm" id="ticketCompanyForm" class="inputGroup">
+  <!--<form *ngIf="!showPrivateUserForm" id="ticketCompanyForm" class="inputGroup">
     <div id="companyUserName" class="personal-details">
       <input type="text"  name="userName" required placeholder="enter your name">
     </div>
@@ -95,7 +96,7 @@
       <input type="text"  name="userName" required placeholder="enter your company's name">
     </div>
     <div id="companyIndustry" class="personal-details">
-<!--      <label for="companyIndustry">Industry</label>-->
+&lt;!&ndash;      <label for="companyIndustry">Industry</label>&ndash;&gt;
       <select name="industry">
         <option selected disabled hidden>Industry</option>
         <option>Information Technology</option>
@@ -103,8 +104,9 @@
         <option>Engineering</option>
       </select>
     </div>
-  </form>
+&lt;!&ndash;    <button type="submit" id="reserveTicketButton">Reserve Ticket</button>&ndash;&gt;
+  </form>-->
 
-  <button type="button" id="reserveTicketButton">Reserve Ticket</button>
+
 
 </div>

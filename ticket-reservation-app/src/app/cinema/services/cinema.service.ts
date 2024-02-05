@@ -7,6 +7,7 @@ import {Movie} from "../models/movie";
 import {ScreeningDto} from "../models/screening-dto";
 import {Ticket} from "../models/ticket";
 import {TicketDto} from "../models/ticket-dto";
+import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,13 @@ export class CinemaService {
 
   getAllMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(`${this.basicUrl}/api/movies`)
+  }
+
+  makeTicketReservation(ticket: Ticket): Observable<Ticket> {
+    return this.http.post<Ticket>(`${this.basicUrl}/api/make-ticket-reservation`, ticket)
+  }
+
+  makeUser(user: User): Observable<User> {
+    return this.http.post<User>(`${this.basicUrl}/make-new-user`, user)
   }
 }
