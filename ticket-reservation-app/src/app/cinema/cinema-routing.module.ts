@@ -7,6 +7,7 @@ import {HomepageComponent} from "./components/homepage/homepage.component";
 import {TicketComponent} from "./components/ticket/ticket.component";
 import {MovieFormComponent} from "./components/movie-form/movie-form.component";
 import {ScreeningFormComponent} from "./components/screening-form/screening-form.component";
+import {AllMoviesComponent} from "./components/all-movies/all-movies.component";
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'screenings/:screeningId', component: SingleScreeningComponent},
   { path: 'ticket/:ticketId', component: TicketComponent},
   { path: 'add-movie', component: MovieFormComponent},
-  { path: 'add-screening', component: ScreeningFormComponent}
+  { path: 'add-screening', component: ScreeningFormComponent},
+  { path: 'movies', component: AllMoviesComponent}
 
 ];
 

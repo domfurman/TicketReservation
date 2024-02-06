@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CinemaService} from "../../services/cinema.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Movie} from "../../models/movie";
 import {ScreeningDto} from "../../models/screening-dto";
 import {Ticket} from "../../models/ticket";
@@ -22,9 +22,9 @@ export class SingleScreeningComponent implements OnInit {
     ticket: Ticket = new Ticket();
     user: User = new User();
     seatChecked: number = 0;
-    userIddelta: number = 0;
     constructor(private cinemaService: CinemaService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private router: Router) {
     }
 
     ngOnInit(): void {
@@ -57,7 +57,7 @@ export class SingleScreeningComponent implements OnInit {
     async makeUser(reservationForm: NgForm) {
       try {
         const result = await this.cinemaService.makeUser(this.user).toPromise()
-        console.log('poszlo')
+        console.log('User made')
         this.getUser(this.user.email)
         // console.log(this.user.userId)
         // this.ticket.userId = this.user.userId
@@ -66,8 +66,26 @@ export class SingleScreeningComponent implements OnInit {
       }
     }
 
-    getUser(email: string): void {
-      this.cinemaService.getUserByEmail(email).subscribe(
+    getUser(email: string): Promise<any> {
+      return new Promise((resolve, reject) => {
+        this.cinemaService.getUserByEmail(email).subscribe(
+          (data) => {
+            // console.log(data);
+            this.ticket.userId = data.userId;
+            this.ticket.typeId = 1;
+            this.ticket.seatId = this.seatChecked;
+            this.ticket.screeningId = this.screeningDto.screening.screeningId;
+            console.log(this.ticket)
+            this.makeTicketReservation()
+          },
+          (error) => {
+            console.error(error);
+            reject(error); // Reject the promise if there is an error
+          }
+        );
+      });
+    }
+      /*this.cinemaService.getUserByEmail(email).subscribe(
         (data) => {
           console.log(data)
           // console.log("getUser func " + this.userIddelta)
@@ -82,24 +100,23 @@ export class SingleScreeningComponent implements OnInit {
         }
       )
 
-    }
+    }*/
 
     reserveTicket(reservationForm: NgForm): void {
       this.makeUser(reservationForm)
-      this.cinemaService.makeTicketReservation(this.ticket).subscribe(
-        (data) => {
-          console.log("poszlo")
-        },
-        (error) => {
-          console.log(error)
-        }
-      )
-        /*this.ticket.typeId = 1
-        this.ticket.seatId = this.seatChecked
-        this.ticket.screeningId = this.screeningDto.screening.screeningId
-      console.log(this.ticket)
-      console.log('reserve func ' + this.userIddelta)*/
     }
+
+  makeTicketReservation(): void {
+    this.cinemaService.makeTicketReservation(this.ticket).subscribe(
+      (data) => {
+        console.log("Ticket reserved", data);
+        this.router.navigate(['/cinema/ticket/'+data])
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
 
 }

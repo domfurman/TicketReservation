@@ -37,5 +37,9 @@ export class AllScreeningsComponent implements OnInit{
     this.router.navigate(['/cinema/add-screening'])
   }
 
+  redirectToAllMovies(): void {
+    this.router.navigate(['/cinema/movies'])
+  }
+
 
 }

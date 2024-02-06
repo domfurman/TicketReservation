@@ -16,6 +16,7 @@ import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {MatDatetimepickerModule} from "@mat-datetimepicker/core";
+import {AllMoviesComponent} from "./components/all-movies/all-movies.component";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {MatDatetimepickerModule} from "@mat-datetimepicker/core";
     HomepageComponent,
     TicketComponent,
     MovieFormComponent,
-    ScreeningFormComponent
+    ScreeningFormComponent,
+    AllMoviesComponent
   ],
   imports: [
     CommonModule,

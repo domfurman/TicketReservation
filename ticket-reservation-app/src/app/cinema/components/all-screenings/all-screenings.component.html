@@ -1,6 +1,7 @@
 <div id="screening-container">
   <button (click)="redirectToAddMovieForm()">Add movie</button>
   <button (click)="redirectToAddScreeningForm()">Add screening</button>
+  <button (click)="redirectToAllMovies()">All movies</button>
   <div *ngFor="let screening of screeningsList" class="screening-card">
     <h3>{{ screening.movieName }}</h3>
     <p>Date: <span>{{ screening.date | date: 'dd-MM-yyyy' }}</span></p>
