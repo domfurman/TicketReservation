@@ -11,4 +11,6 @@ public interface UserRepository {
     public int makeUser(User user);
 
     User getUserInfoByTicketId(int ticketId);
+
+    User getUserByEmail(String email);
 }

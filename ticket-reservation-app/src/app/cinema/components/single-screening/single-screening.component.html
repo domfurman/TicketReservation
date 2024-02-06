@@ -46,7 +46,7 @@
     <p>Enter your personal details</p>
   </div>
 
-  <form *ngIf="showPrivateUserForm" id="ticketForm" class="inputGroup" (ngSubmit)="makeUser(reservationForm)" #reservationForm="ngForm">
+  <form *ngIf="showPrivateUserForm" id="ticketForm" class="inputGroup" (ngSubmit)="reserveTicket(reservationForm)" #reservationForm="ngForm">
     <div id="userName" class="personal-details" >
       <input type="text"  name="name" required placeholder="enter your name" [(ngModel)]="user.name">
     </div>

@@ -6,6 +6,8 @@ import {ScreeningDto} from "../../models/screening-dto";
 import {Ticket} from "../../models/ticket";
 import {NgForm} from "@angular/forms";
 import {User} from "../../models/user";
+import {Seat} from "../../models/seat";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-single-screenings',
@@ -19,7 +21,8 @@ export class SingleScreeningComponent implements OnInit {
     showPrivateUserForm: boolean = true
     ticket: Ticket = new Ticket();
     user: User = new User();
-
+    seatChecked: number = 0;
+    userIddelta: number = 0;
     constructor(private cinemaService: CinemaService,
                 private route: ActivatedRoute) {
     }
@@ -46,29 +49,58 @@ export class SingleScreeningComponent implements OnInit {
         this.showPrivateUserForm = !this.showPrivateUserForm
     }
 
-    onSubmitMakeTicketReservation(reservationForm: NgForm) {
-        this.cinemaService.makeTicketReservation(this.ticket).subscribe(
-            (result) => {
-                console.log('poszlo')
-            },
-            (error) => {
-                console.error('nie poszlo', error)
-            }
-        )
+    onCheckboxChange(seat: Seat) {
+        console.log('Checkbox clicked:', seat.seatId);
+        this.seatChecked = seat.seatId
     }
 
-    onCheckboxChange(event: any) {
-        console.log('Checkbox clicked:', event);
+    async makeUser(reservationForm: NgForm) {
+      try {
+        const result = await this.cinemaService.makeUser(this.user).toPromise()
+        console.log('poszlo')
+        this.getUser(this.user.email)
+        // console.log(this.user.userId)
+        // this.ticket.userId = this.user.userId
+      } catch (error) {
+        console.error(error)
+      }
     }
 
-    makeUser(reservationForm: NgForm) {
-      this.cinemaService.makeUser(this.user).subscribe(
-          (result: User) => {
-            console.log('poszlo')
-          }, (error) => {
-            console.error(error)
-          }
+    getUser(email: string): void {
+      this.cinemaService.getUserByEmail(email).subscribe(
+        (data) => {
+          console.log(data)
+          // console.log("getUser func " + this.userIddelta)
+          this.ticket.userId = data.userId
+          this.ticket.typeId = 1
+          this.ticket.seatId = this.seatChecked
+          this.ticket.screeningId = this.screeningDto.screening.screeningId
+          // this.ticket.userId = data.userId
+          // console.log(this.ticket)
+        }, (error) => {
+          console.error(error)
+        }
       )
+
     }
+
+    reserveTicket(reservationForm: NgForm): void {
+      this.makeUser(reservationForm)
+      this.cinemaService.makeTicketReservation(this.ticket).subscribe(
+        (data) => {
+          console.log("poszlo")
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+        /*this.ticket.typeId = 1
+        this.ticket.seatId = this.seatChecked
+        this.ticket.screeningId = this.screeningDto.screening.screeningId
+      console.log(this.ticket)
+      console.log('reserve func ' + this.userIddelta)*/
+    }
+
+
 }
 

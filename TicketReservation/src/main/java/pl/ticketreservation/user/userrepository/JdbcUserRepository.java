@@ -23,7 +23,7 @@ public class JdbcUserRepository implements UserRepository{
 
     @Override
     public int makeUser(User user){
-        Object[] params = {user.getName(), user.getSurname(), user.getEmail()};
+        Object[] params = {user.getName(), user.getSurname()};
         try {
             jdbcTemplate.queryForObject("SELECT userId FROM user WHERE name = ? AND surname = ?", params, int.class);
             return -1;
@@ -42,5 +42,10 @@ public class JdbcUserRepository implements UserRepository{
                 WHERE t.ticketId = ?
                 """,
                 BeanPropertyRowMapper.newInstance(User.class), ticketId);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+       return jdbcTemplate.queryForObject("SELECT * FROM user WHERE email = ?", BeanPropertyRowMapper.newInstance(User.class), email);
     }
 }

@@ -1,6 +1,7 @@
 package pl.ticketreservation.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.ticketreservation.user.userrepository.JdbcUserRepository;
@@ -25,6 +26,12 @@ public class UserController {
     public ResponseEntity<Integer> makeUser(@RequestBody User user){
         Integer u = jdbcUserRepository.makeUser(user);
         return ResponseEntity.ok(u);
+    }
+
+    @GetMapping(path="/api/get-user-by-email/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
+        User user = jdbcUserRepository.getUserByEmail(email);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 

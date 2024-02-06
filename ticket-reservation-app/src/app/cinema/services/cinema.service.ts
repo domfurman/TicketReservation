@@ -48,4 +48,8 @@ export class CinemaService {
   makeUser(user: User): Observable<User> {
     return this.http.post<User>(`${this.basicUrl}/make-new-user`, user)
   }
+
+  getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(`${this.basicUrl}/api/get-user-by-email/${email}`)
+  }
 }
